@@ -1,17 +1,20 @@
-import React, { useState } from "react";
-import Navbar from "./components/navbar/Navbar";
-
 import "./App.css";
 
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store'; 
+import HomeView from './views/HomeView';
+
 function App() {
-
   return (
-    <>
-      <Navbar/>
-      <h1>hola</h1>
-
-
-    </>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path='/' element={<HomeView />} />
+        </Routes> 
+      </Router>   
+    </Provider>
   );
 }
 
