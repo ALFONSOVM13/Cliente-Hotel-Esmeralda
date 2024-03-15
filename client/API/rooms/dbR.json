@@ -1,0 +1,160 @@
+[
+    {
+      "id": "df8f0c3b-dbb6-4b8b-af86-218a3d32c18a",
+      "type": "Standard King",
+      "capacity": 2,
+      "beds": [
+        "King",
+        "Double"
+      ],
+      "price": 120,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": false,
+      "TV cable": false,
+      "phone": false,
+      "Url": "https://cdn.pixabay.com/photo/2016/11/19/13/06/bed-1839183_640.jpg"
+    },
+    {
+      "id": "ce4162d7-61f7-4d64-9fc5-343a48623ee7",
+      "type": "Standard King",
+      "capacity": 2,
+      "beds": [
+        "King",
+        "Double"
+      ],
+      "price": 120,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": false,
+      "TV cable": false,
+      "phone": false,
+      "Url": "https://cdn.pixabay.com/photo/2016/11/19/13/06/bed-1839183_640.jpg"
+    },
+    {
+      "id": "a83b7a1d-ec86-4835-8e2e-9a8e1353e7f4",
+      "type": "Standard King",
+      "capacity": 2,
+      "beds": [
+        "King",
+        "Double"
+      ],
+      "price": 120,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": false,
+      "TV cable": false,
+      "phone": false,
+      "Url": "https://cdn.pixabay.com/photo/2016/11/19/13/06/bed-1839183_640.jpg"
+    },
+    {
+      "id": "e2c71c04-1f6b-49bb-8235-f90d3811ad89",
+      "type": "Standard King",
+      "capacity": 2,
+      "beds": [
+        "King",
+        "Double"
+      ],
+      "price": 120,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": false,
+      "TV cable": false,
+      "phone": false,
+      "Url": "https://cdn.pixabay.com/photo/2016/11/19/13/06/bed-1839183_640.jpg"
+    },
+    {
+      "id": "a9a38987-7b5b-4e0d-a0e8-c480564db3fc",
+      "type": "Superior King",
+      "capacity": 4,
+      "beds": [
+        "King",
+        "King"
+      ],
+      "price": 200,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": true,
+      "TV cable": true,
+      "phone": true,
+      "Url": "https://www.istockphoto.com/es/search/2/image?mediatype=&phrase=habitaci%C3%B3n&utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fes%2Fimages%2Fsearch%2Fhabitaci%25C3%25B3n%2F&utm_term=habitaci%C3%B3n"
+    },
+    {
+      "id": "be3dca02-bb86-4942-bc0b-342b66fd657d",
+      "type": "Superior King",
+      "capacity": 4,
+      "beds": [
+        "King",
+        "King"
+      ],
+      "price": 200,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": true,
+      "TV cable": true,
+      "phone": true,
+      "Url": "https://www.istockphoto.com/es/search/2/image?mediatype=&phrase=habitaci%C3%B3n&utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fes%2Fimages%2Fsearch%2Fhabitaci%25C3%25B3n%2F&utm_term=habitaci%C3%B3n"
+    },
+    {
+      "id": "c9af9bb0-35b7-468d-bf1f-cf67d26f1375",
+      "type": "Superior King",
+      "capacity": 4,
+      "beds": [
+        "King",
+        "King"
+      ],
+      "price": 200,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": true,
+      "TV cable": true,
+      "phone": true,
+      "Url": "https://www.istockphoto.com/es/search/2/image?mediatype=&phrase=habitaci%C3%B3n&utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fes%2Fimages%2Fsearch%2Fhabitaci%25C3%25B3n%2F&utm_term=habitaci%C3%B3n"
+    },
+    {
+      "id": "16d6d7f0-d8f2-4a08-b708-c473ee7c8726",
+      "type": "Junior Suite",
+      "capacity": 2,
+      "beds": [
+        "King"
+      ],
+      "price": 1200,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": true,
+      "TV cable": true,
+      "phone": true,
+      "Url": "https://media.istockphoto.com/id/1082907946/es/foto/marr%C3%B3n-y-naranja-almohadas-en-una-cama-blanca-natural-dormitorio-interior-con-l%C3%A1mpara-de.jpg?s=612x612&w=0&k=20&c=q0lZ7rv1bNq9sAEJcnPkOlj79Fj5OF0nawUYWO5icXM="
+    },
+    {
+      "id": "07e6201b-38f8-44f6-a74b-084f437b9d58",
+      "type": "Junior Suite",
+      "capacity": 2,
+      "beds": [
+        "King"
+      ],
+      "price": 1200,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": true,
+      "TV cable": true,
+      "phone": true,
+      "Url": "https://media.istockphoto.com/id/1082907946/es/foto/marr%C3%B3n-y-naranja-almohadas-en-una-cama-blanca-natural-dormitorio-interior-con-l%C3%A1mpara-de.jpg?s=612x612&w=0&k=20&c=q0lZ7rv1bNq9sAEJcnPkOlj79Fj5OF0nawUYWO5icXM="
+    },
+    {
+      "id": "4d3ffcc1-330d-45a7-8401-5c134d9ad242",
+      "type": "Presidential Suite",
+      "capacity": 4,
+      "beds": [
+        "King",
+        "King"
+      ],
+      "price": 3000,
+      "sitting area": true,
+      "dining table": true,
+      "wifi": true,
+      "TV cable": true,
+      "phone": true,
+      "Url": "https://media.istockphoto.com/id/1216598702/es/foto/3d-renderizaci%C3%B3n-moderna-suite-de-lujo-y-ba%C3%B1o.jpg?s=612x612&w=0&k=20&c=UfGRNq4bZbFgxLiXbrbfd5cQS2Sd0ISB6v9yNuw5D3k="
+    }
+  ]
