@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Importa la biblioteca axios
+import axios from 'axios'; 
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 
 const SearchBar = () => {
-  // almacenamos los estados checkin, out, personas por un lado
-  // por otro lado almacenamos la respuesta del back para las habit. disponibles
-  // por último almacenamos la reserva de la habitación
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
-  const [numberOfPeople, setNumberOfPeople] = useState('');
+  const [numberOfPeople, setNumberOfPeople] = useState('1'); // Valor predeterminado '1'
   const [availableRooms, setAvailableRooms] = useState([]);
   const [reservationStatus, setReservationStatus] = useState('');
 
@@ -22,19 +19,16 @@ const SearchBar = () => {
         checkOutDate,
         numberOfPeople
       };
-      // Acá hacemos una solicitud get al back ( con los dato de searchData) para que nos 
-      // diga si la habitación está disponible
       const response = await axios.get('/ruta-disponibilidad', {
         params: searchData
       });
-      // si está disponible seteamos el estado availableRooms
       setAvailableRooms(response.data.rooms);
     } catch (error) {
       console.error('Error al enviar la solicitud de disponibilidad:', error);
+      // Manejo de errores de red
     }
   };
-    // si hay disponibilidad el usuario puede hacer la reserva enviando 
-    // los datos mandados en el req Get más el id de la habitación elegida
+
   const handleReservation = async (roomId) => {
     try {
       const reservationData = {
@@ -43,12 +37,13 @@ const SearchBar = () => {
         checkOutDate,
         numberOfPeople
       };
-
       const response = await axios.post('/ruta-reserva', reservationData);
-     // con la reserva exitosa se almacena en el estado reservationStatus 
       setReservationStatus(response.data.message);
+      // Actualización de la lista de habitaciones disponibles después de la reserva exitosa
+      setAvailableRooms(prevRooms => prevRooms.filter(room => room.id !== roomId));
     } catch (error) {
       console.error('Error al enviar la solicitud de reserva:', error);
+      // Manejo de errores de red
     }
   };
 
