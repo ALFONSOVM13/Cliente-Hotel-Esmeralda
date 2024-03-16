@@ -1,4 +1,5 @@
 import React from 'react'
+import CardsRooms from '../components/cardsRooms/cardsRooms'
 // import CardsRooms from '../cardsRooms/cardsRooms'
 
 const Rooms = () => {
@@ -8,7 +9,7 @@ const Rooms = () => {
     <div>
         <h1>Roooms</h1>
     </div>
-   
+   <CardsRooms/>
   
 </div>
   )
