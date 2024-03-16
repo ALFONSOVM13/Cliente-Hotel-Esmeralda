@@ -32,7 +32,8 @@ const DetailModalRoom = ({ room }) => {
       <p className="text-white">Beds: {room.beds.join(', ')}</p>
       <p className="text-white">WiFi: {room.wifi ? 'Yes' : 'No'}</p>
       <p className='text-white'>{room.services}</p>
-      {/* Agrega más contenido según sea necesario */}
+      <p className='text-white'>Price : USD{room.price}</p>
+
     </>
  );
 };
