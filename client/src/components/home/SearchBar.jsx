@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
-
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
@@ -8,7 +7,7 @@ import Select from 'react-select';
 const SearchBar = () => {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
-  const [numberOfPeople, setNumberOfPeople] = useState('1'); // Valor predeterminado '1'
+  const [numberOfPeople, setNumberOfPeople] = useState('1'); 
   const [availableRooms, setAvailableRooms] = useState([]);
   const [reservationStatus, setReservationStatus] = useState('');
 
@@ -48,19 +47,28 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
-      <h2>Search for Rooms</h2>
-      <div>
-        <label>Check-in Date:</label>
-        <DatePicker selected={checkInDate} onChange={date => setCheckInDate(date)} />
+    <div className="max-w-lg mx-auto p-4 bg-white rounded-lg shadow-md">
+      <h2 className="text-xl font-semibold mb-4">Search for Rooms</h2>
+      <div className="mb-4">
+        <label className="block mb-1">Check-in Date:</label>
+        <DatePicker
+          className="w-full px-3 py-2 border rounded-lg"
+          selected={checkInDate}
+          onChange={date => setCheckInDate(date)}
+        />
       </div>
-      <div>
-        <label>Check-out Date:</label>
-        <DatePicker selected={checkOutDate} onChange={date => setCheckOutDate(date)} />
+      <div className="mb-4">
+        <label className="block mb-1">Check-out Date:</label>
+        <DatePicker
+          className="w-full px-3 py-2 border rounded-lg"
+          selected={checkOutDate}
+          onChange={date => setCheckOutDate(date)}
+        />
       </div>
-      <div>
-        <label>Number of People:</label>
+      <div className="mb-4">
+        <label className="block mb-1">Number of People:</label>
         <Select
+          className="w-full px-3 py-2 border rounded-lg"
           options={[
             { value: '1', label: '1' },
             { value: '2', label: '2' },
@@ -71,23 +79,33 @@ const SearchBar = () => {
           onChange={option => setNumberOfPeople(option.value)}
         />
       </div>
-      <button onClick={handleSearch}>Search</button>
+      <button
+        className="block w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+        onClick={handleSearch}
+      >
+        Search
+      </button>
 
       {availableRooms.length > 0 && (
-        <div>
-          <h3>Available Rooms</h3>
+        <div className="mt-4">
+          <h3 className="text-lg font-semibold mb-2">Available Rooms</h3>
           <ul>
             {availableRooms.map(room => (
-              <li key={room.id}>
-                {room.name} - Price: {room.price}
-                <button onClick={() => handleReservation(room.id)}>Reserve</button>
+              <li key={room.id} className="mb-2">
+                <span className="mr-2">{room.name} - Price: {room.price}</span>
+                <button
+                  className="px-3 py-1 text-sm text-white bg-green-500 rounded-lg hover:bg-green-600"
+                  onClick={() => handleReservation(room.id)}
+                >
+                  Reserve
+                </button>
               </li>
             ))}
           </ul>
         </div>
       )}
 
-      {reservationStatus && <p>{reservationStatus}</p>}
+      {reservationStatus && <p className="mt-4 text-green-600">{reservationStatus}</p>}
     </div>
   );
 };
