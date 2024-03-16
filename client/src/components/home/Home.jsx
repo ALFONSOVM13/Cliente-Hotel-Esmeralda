@@ -51,6 +51,7 @@ function Home() {
   return (
     <div className="max-w-4xl mx-auto p-4">
       <SearchBar />
+      <h1 class="font-font1 text-verde">PROBAR FUENTE</h1>
       <div className="flex justify-between mt-4 mb-2">
         <div>
           <label className="block mb-1">Price:</label>
