@@ -18,4 +18,5 @@ const rootReducer = combineReducers({
     rootReducer,
     composeEnhancers(applyMiddleware(thunk))
   );
+// store.subscribe(() => console.log('store :', store.getState()))
 export default store;

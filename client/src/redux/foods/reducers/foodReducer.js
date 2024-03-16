@@ -1,7 +1,7 @@
 import { FOODS, FILTER_FOODS, ORDER_FOODS } from "../actions/types";
 
 const initialState = {
-  allFoods: [],
+  foodsAll: [],
   filteredFoods: [],
 };
 
@@ -10,23 +10,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case FOODS:
       return {
         ...state,
-        allFoods: payload,
+        foodsAll: payload,
         filteredFoods: [...payload],
       };
     case FILTER_FOODS:
       const { category, price } = payload;
 
       if (!category && !price) {
-        return { ...state, filteredFoods: state.allFoods };
+        return { ...state, filteredFoods: state.foodsAll };
       }
 
       if (category) {
-        const filterByCategory = state.allFoods.filter((food) => food.category === category);
+        const filterByCategory = state.foodsAll.filter((food) => food.category === category);
         return { ...state, filteredFoods: filterByCategory };
       }
 
       if (price) {
-        const filterByPrice = state.allFoods.filter((food) => food.price <= price);
+        const filterByPrice = state.foodsAll.filter((food) => food.price <= price);
         return { ...state, filteredFoods: filterByPrice };
       }
     case ORDER_FOODS:

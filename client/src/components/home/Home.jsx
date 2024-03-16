@@ -10,12 +10,11 @@ import {
   filterFoods,
   orderFoods,
 } from "../../redux/foods/actions/foodActions";
-import axios from "axios";
 import SearchBar from "./SearchBar";
 
 function Home() {
   const dispatch = useDispatch();
-  const allFoodsData = useSelector((state) => state.allFoods);
+  const allFoodsData = useSelector((state) => state.foodsAll);
   const filteredFoods = useSelector((state) => state.filteredFoods);
   const PageSize = 4;
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +24,9 @@ function Home() {
   }
   , [dispatch]);
   
-
+  console.log('todas las foods', allFoodsData)
+  console.log('foods filtradas', filteredFoods)
+  
   const handleCategoryChange = (event) => {
     const { value } = event.target;
     dispatch(filterFoods({ category: value }));
@@ -102,7 +103,6 @@ function Home() {
       >
         Next
       </button>
-      <div></div>
     </div>
   );
 }

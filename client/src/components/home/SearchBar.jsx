@@ -72,8 +72,7 @@ const SearchBar = () => {
         />
       </div>
       <button onClick={handleSearch}>Search</button>
-
-      {availableRooms.length > 0 && (
+      {availableRooms && availableRooms.length > 0 && (
         <div>
           <h3>Available Rooms</h3>
           <ul>
