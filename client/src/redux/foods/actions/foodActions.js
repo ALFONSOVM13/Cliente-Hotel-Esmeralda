@@ -3,15 +3,13 @@ import { FOODS, FILTER_FOODS, ORDER_FOODS } from "./types";
 
 export const allFoods = () => async (dispatch) => {
   try {
-    const response = await axios.get('/API/foods/dbF.json');
-
-     console.log('foodActions',response.data)
+    const response = await axios.get('http://localhost:3000/api/menu');
     dispatch({
       type: FOODS,
-      payload: response.data, 
+      payload: response.data.menu
     });
   } catch (error) {
-    console.error("Error al obtener los alimentos:", error.message);
+    console.error('Error al obtener los alimentos:', error);
   }
 };
 
