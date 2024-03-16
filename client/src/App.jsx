@@ -8,6 +8,8 @@ import HomeView from './views/HomeView';
 
 import LandingView from "./views/LandingView";
 
+import DetailView from "./views/DetailView";
+
 function App() {
 
 //   const location = useLocation();
@@ -26,6 +28,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomeView />} />
           <Route path='/landing' element={<LandingView />} />
+          <Route path="/detail/:id" element={<DetailView />} />
         </Routes> 
       </Router>   
     </Provider>
