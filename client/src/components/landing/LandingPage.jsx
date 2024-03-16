@@ -12,13 +12,13 @@ function LandingPages({ showModal, setShowModal }) {
     navigate('/termsAndCondicitions');   
   };
 
-//   const handleClose = () => {
-//     setShowModal(false); // Cambia el estado para cerrar el modal
-//  };
+  const handleClose = () => {
+    setShowModal(false); // Cambia el estado para cerrar el modal
+ };
 
-//  if (!showModal) {
-//     return null; // No renderiza nada si el modal está cerrado
-//  }
+ if (!showModal) {
+    return null; // No renderiza nada si el modal está cerrado
+ }
 
   return (
     

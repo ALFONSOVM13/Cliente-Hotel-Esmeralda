@@ -65,7 +65,7 @@ function Navbar() {
           </NavLink>
 
           <NavLink
-            to="/contact"
+            to="/restaurant"
             activeClassName="text-gray-300"
             className="text-white hover:text-d"
           >
@@ -92,7 +92,7 @@ function Navbar() {
                 {" "}
                 <div className="py-1">
                   <NavLink
-                    to="/option1"
+                    to="/gallery"
                     activeClassName="text-gray-800 bg-gray-200"
                     className="block px-4 py-2 text-b hover:text-d "
                   >
