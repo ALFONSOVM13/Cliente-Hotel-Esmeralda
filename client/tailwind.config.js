@@ -4,13 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        dorado: '#958938',
-        verde: '#1F2F1A',
-        accent: '#F8F9FA',
+        d: '#fcd34d',
+        v: '#1F2F1A',
+        b: '#F8F9FA',
         font: '#000000',
       },
       fontFamily: {
-        custom: ['Abhaya Libre', 'sans-serif'],
+        font1: ['Abhaya Libre', 'sans-serif'],
       },
     },
   },
