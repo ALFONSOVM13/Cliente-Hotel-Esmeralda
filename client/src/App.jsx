@@ -23,16 +23,14 @@ function App() {
 //  }, [location]);
 
   return (
-    <Provider store={store}>
-      <Router>
+       <Router>
         <Routes>
           <Route path='/' element={<HomeView />} />
           <Route path='/landing' element={<LandingView />} />
           <Route path="/detail/:id" element={<DetailView />} />
         </Routes> 
       </Router>   
-    </Provider>
-  );
+   );
 }
 
 export default App;

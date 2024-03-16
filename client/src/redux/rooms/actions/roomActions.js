@@ -4,6 +4,7 @@ import axios from "axios";
  export const allRooms = () => async (dispatch) => {
     try {
       const response = await axios.get('/API/rooms/dbR.json');
+      console.log('roomActions', response.data)
       return dispatch({
         type: ROOMS,
         payload: response.data,
@@ -23,3 +24,4 @@ import axios from "axios";
       payload: order
     });
   };
+  
