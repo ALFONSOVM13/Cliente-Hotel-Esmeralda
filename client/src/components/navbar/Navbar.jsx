@@ -21,18 +21,18 @@ function Navbar() {
     setIsOpen(false);
   };
 
-  const getLobbyImage = () => {
-    switch (location.pathname) {
-      case "/":
-        return lobby;
-      case "/rooms":
-        return lobby1;
-      case "/contact":
-        return lobby2;
-      default:
-        return lobby3; 
-    }
-  };
+  // const getLobbyImage = () => {
+  //   switch (location.pathname) {
+  //     case "/":
+  //       return lobby;
+  //     case "/rooms":
+  //       return lobby1;
+  //     case "/contact":
+  //       return lobby2;
+  //     default:
+  //       return lobby3; 
+  //   }
+  // };
 
   return (
     <div className="nav-container">
@@ -138,7 +138,7 @@ function Navbar() {
         </div>
       </nav>
       <header className="flex justify-center items-center">
-        <img src={getLobbyImage()}alt="lobby" className="w-full m-0" />
+        <img src={lobby}alt="lobby" className="w-full m-0" />
       </header>
     </div>
   );

@@ -1,29 +1,35 @@
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function LandingPages({ showModal, setShowModal }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  
 
   const handleClick = () => {
-    navigate('/formulario');
-    console.log('yendo a formulaio')
+    navigate("/formulario");
+    console.log("yendo a formulario");
   };
 
-  const handleClickDetails = () => { //aca se me ocurrio que al ir a "view details" , lo lleve al una pagina con los terminos y condiciones de la oferta
-    navigate('/termsAndCondicitions');   
+  const handleClickDetails = () => {
+    navigate("/termsAndCondicitions");
   };
-
   const handleClose = () => {
-    setShowModal(false); // Cambia el estado para cerrar el modal
- };
+    setShowModal(false);
+    document.body.style.overflow = "auto";
+  };
 
- if (!showModal) {
-    return null; // No renderiza nada si el modal está cerrado
- }
+  useEffect(() => {
+    setShowModal(true);
+    document.body.style.overflow = "hidden";
+  }, []);
+
+  if (!showModal) {
+    return null;
+  }
 
   return (
-    
-    <div className="flex flex-col justify-center bg-white rounded-2xl container mx-auto mt-20">
-      <div className="flex overflow-hidden relative flex-col justify-center w-full min-h-[670px] max-md:max-w-full">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-70 flex items-center justify-center">
+      <div className="relative bg-white" style={{ maxWidth: "60%" }}>
         <img
           loading="lazy"
           srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/205b109a1a71984976beadff416f4a764d87b97a4bca85258042bf8f568c0157?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/205b109a1a71984976beadff416f4a764d87b97a4bca85258042bf8f568c0157?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/205b109a1a71984976beadff416f4a764d87b97a4bca85258042bf8f568c0157?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/205b109a1a71984976beadff416f4a764d87b97a4bca85258042bf8f568c0157?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/205b109a1a71984976beadff416f4a764d87b97a4bca85258042bf8f568c0157?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/205b109a1a71984976beadff416f4a764d87b97a4bca85258042bf8f568c0157?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/205b109a1a71984976beadff416f4a764d87b97a4bca85258042bf8f568c0157?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/205b109a1a71984976beadff416f4a764d87b97a4bca85258042bf8f568c0157?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&"
@@ -39,15 +45,16 @@ function LandingPages({ showModal, setShowModal }) {
               />
               <div className="shrink-0 mt-3.5 h-px bg-white border border-white border-solid max-md:max-w-full" />
             </div>
-            <button className="shrink-0 self-start mt-2 aspect-[0.83] fill-white w-[15px] " 
-                    // onClick={handleClose}
-                     >
-                                <img
-                            loading="lazy2"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/11cffe43a5854cc41d644d00c9eebf9684cf448d18f461fe35a538f723af47e4?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&"
-                            alt="Salida de modal"
-                        />
-              </button>
+            <button
+              className="shrink-0 self-start mt-2 aspect-[0.83] fill-white w-[15px] "
+              onClick={handleClose}
+            >
+              <img
+                loading="lazy2"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/11cffe43a5854cc41d644d00c9eebf9684cf448d18f461fe35a538f723af47e4?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&"
+                alt="Salida de modal"
+              />
+            </button>
           </div>
           <div className="mt-24 ml-4 max-md:mt-10 max-md:max-w-full">
             <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -60,8 +67,9 @@ function LandingPages({ showModal, setShowModal }) {
                     With your room reservation we give you two wines ‘Portillo
                     Organic Malbec 2022’and one day of free family car rental
                   </div>
-                  <button className="justify-center self-center px-12 py-5 mt-20 text-center whitespace-nowrap bg-amber-300 hover:bg-amber-400 transition-colors rounded-2xl shadow-lg leading-[163%] max-md:px-5 max-md:mt-10 cursor-pointer"
-                  onClick={handleClick}
+                  <button
+                    className="justify-center self-center px-12 py-5 mt-20 text-center whitespace-nowrap bg-amber-300 hover:bg-amber-400 transition-colors rounded-2xl shadow-lg leading-[163%] max-md:px-5 max-md:mt-10 cursor-pointer"
+                    onClick={handleClick}
                   >
                     Search Room
                   </button>
@@ -79,8 +87,9 @@ function LandingPages({ showModal, setShowModal }) {
                       luxury in all our rooms. Exclusive offer for those days.
                     </div>
                   </div>
-                  <button className="justify-center items-center px-16 py-5 text-xl font-extrabold tracking-normal leading-7 text-center whitespace-nowrap bg-amber-300  hover:bg-amber-400 transition-colors rounded-none max-md:px-5 cursor-pointer"
-                  onClick={handleClickDetails}
+                  <button
+                    className="justify-center items-center px-16 py-5 text-xl font-extrabold tracking-normal leading-7 text-center whitespace-nowrap bg-amber-300  hover:bg-amber-400 transition-colors rounded-none max-md:px-5 cursor-pointer"
+                    onClick={handleClickDetails}
                   >
                     View Details
                   </button>
@@ -94,5 +103,4 @@ function LandingPages({ showModal, setShowModal }) {
   );
 }
 
-
-export default LandingPages
+export default LandingPages;
