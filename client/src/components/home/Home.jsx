@@ -9,18 +9,25 @@ import SearchBar from "./SearchBar";
 
 function Home() {
   const dispatch = useDispatch();
-  const allFoodsData = useSelector((state) => state.foods.allFoods);
+  const allFoodsData = useSelector((state) => state.foods.foodsAll);
   const filteredFoods = useSelector((state) => state.foods.filteredFoods);
-  const PageSize = 4;
+ 
+  const PageSize = 3;
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(allFoods());
   }, [dispatch]);
 
+
   const handleCategoryChange = (event) => {
     const { value } = event.target;
     dispatch(filterFoods({ category: value }));
+    setCurrentPage(1);
+  };
+
+  const handleCategoryClick = (category) => {
+    dispatch(filterFoods({ category }));
     setCurrentPage(1);
   };
 
@@ -29,7 +36,7 @@ function Home() {
     dispatch(orderFoods({ type: "price", order: value }));
   };
 
-  const handlePageChange = (page) => {
+   const handlePageChange = (page) => {
     setCurrentPage(Math.max(1, page));
   };
 
@@ -65,22 +72,15 @@ function Home() {
             <option value="D">Highest Price</option>
           </select>
         </div>
-        <div>
+
+    
+      <div>
           <label className="block mb-1">Category:</label>
-          <select
-            name="byCategory"
-            className="border rounded-md px-3 py-2"
-            onChange={handleCategoryChange}
-          >
-            <option value="">Category</option>
-            <option value="italian">Italian</option>
-            <option value="japanese">Japanese</option>
-            <option value="mexican">Mexican</option>
-            <option value="drinks">Drinks</option>
-            <option value="burgers">Burgers</option>
-            <option value="snacks">Snacks</option>
-            <option value="dessert">Dessert</option>
-          </select>
+          <div className="flex flex-wrap">
+            {["Italian", "Japanese", "Mexican", "Drinks", "Burgers", "Snacks", "Dessert"].map(category => (
+              <button key={category} onClick={() => handleCategoryClick(category)} className="border rounded-md px-3 py-2 mr-2 mb-2 bg-blue-500 text-white hover:bg-blue-600">{category}</button>              
+            ))}
+          </div>
         </div>
       </div>
       {filteredFoods ? (

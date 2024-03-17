@@ -24,10 +24,8 @@ const SearchBar = () => {
       setAvailableRooms(response.data.rooms);
     } catch (error) {
       console.error('Error al enviar la solicitud de disponibilidad:', error);
-      // Manejo de errores de red
     }
   };
-
   const handleReservation = async (roomId) => {
     try {
       const reservationData = {
@@ -97,7 +95,7 @@ const SearchBar = () => {
                   className="px-3 py-1 text-sm text-white bg-green-500 rounded-lg hover:bg-green-600"
                   onClick={() => handleReservation(room.id)}
                 >
-                  Reserve
+                  BOOK
                 </button>
               </li>
             ))}
