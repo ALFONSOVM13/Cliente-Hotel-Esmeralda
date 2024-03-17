@@ -9,6 +9,7 @@ import LandingView from "./views/LandingView";
 
 import DetailView from "./views/DetailView";
 import Rooms from "./views/RoomsView";
+import Restaurant from "./views/Restaurant";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/landing' element={<LandingView />} />
           <Route path="/detail/:id" element={<DetailView />} />
           <Route path="/rooms" element={<Rooms/>}/>
+          <Route path="/restaurant" element={<Restaurant/>}/>
         </Routes> 
       </Router>   
    );
