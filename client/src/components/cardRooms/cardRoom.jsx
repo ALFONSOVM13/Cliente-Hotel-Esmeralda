@@ -16,12 +16,12 @@ function CardRoom({ room }) {
   };
 
  return (
-<div className="flex items-center  rounded-lg shadow md:max-w-xl dark:bg-v">
+<div className="flex items-center  rounded-lg shadow   bg-v ">
  <img className="object-cover w-full rounded-t-lg h-128 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={room.images[0]} alt={room.name} />
  <img className="object-cover w-full rounded-t-lg h-128 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={room.images[1]} alt={room.name} />
  <div className="flex flex-col justify-between p-4 leading-normal">
-     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{room.name}</h5>
-     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{room.description}</p>
+     <h5 className="mb-2 text-2xl font-bold tracking-tight text-b dark:text-white">{room.name}</h5>
+     <p className="mb-3 font-normal text-b dark:text-b ">{room.description}</p>
      <div className="flex justify-between"> 
        <button onClick={() => setIsModalOpen(true)} className="flex justify-center items-center px-4 py-2 text-base tracking-normal leading-6 text-white hover:bg-slate-950 transition-colors rounded-2xl border border-violet-100 border-solid max-w-[364px]">
           See More        

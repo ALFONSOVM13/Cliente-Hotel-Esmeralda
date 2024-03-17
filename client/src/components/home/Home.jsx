@@ -15,23 +15,13 @@ function Home() {
   const PageSize = 4;
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(true);
-  const [modalOpen, setModalOpen] = useState(true);
 
   useEffect(() => {
-    // Lógica para cargar los datos iniciales o cualquier otra acción necesaria al cargar la página
     dispatch(allFoods());
-
-    // Función de limpieza que se ejecuta al desmontar el componente
     return () => {
-      // Ocultar la modal al desmontar el componente
       setShowModal(false);
     };
   }, [dispatch]);
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
 
   const handleCategoryChange = (event) => {
     const { value } = event.target;
