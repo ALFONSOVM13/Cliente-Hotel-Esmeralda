@@ -24,7 +24,7 @@ const MenuPage = ({ setCurrentPage }) => {
  const handleAllDishesClick = () => {
   dispatch(allFoods());
   setActiveItem("All Dishes");
-  setCurrentPage(1); // Reinicia la página a 1
+  setCurrentPage(1); 
 };
 
  return (
