@@ -13,24 +13,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
         foodsAll: payload,
         filteredFoods: [...payload],
       };
-    case FILTER_FOODS:
-      const { category, price } = payload;
-
-      if (!category && !price) {
-        return { ...state, filteredFoods: state.foodsAll };
-      }
-
-      if (category) {
-        const filterByCategory = state.foodsAll.filter((food) => food.category === category);
-        return { ...state, filteredFoods: filterByCategory };
-      }
-
-      if (price) {
-        const filterByPrice = state.foodsAll.filter((food) => food.price <= price);
-        return { ...state, filteredFoods: filterByPrice };
-      }
+    
+        case FILTER_FOODS:
+          const { category } = payload;
+          let filteredByCategory = [...state.foodsAll]; 
+          if (category) {
+            filteredByCategory = filteredByCategory.filter((food) => food.category === category);
+          }
+          return { ...state, filteredFoods: filteredByCategory };
     case ORDER_FOODS:
-      const { orderType, order } = payload;
+      const { type: orderType, order } = payload;
       let sortedFoods = [...state.filteredFoods];
 
       if (orderType === "price") {
