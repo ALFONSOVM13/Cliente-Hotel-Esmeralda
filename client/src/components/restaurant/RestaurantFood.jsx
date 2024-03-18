@@ -118,7 +118,10 @@ function Food({ currentPage, setCurrentPage }) {
            
           ))
         ) : (
-          <p>Loading dishes...</p>
+          <div className="flex justify-center items-center max-md:pr-5 mb-4 shadow-lg">
+
+            <p className="flex justify-center items-center max-md:pr-5 mb-4 shadow-lg">Loading dishes...</p>
+          </div>
         )}
         <div className="flex justify-between mt-4">
           <button

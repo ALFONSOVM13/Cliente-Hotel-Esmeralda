@@ -10,6 +10,8 @@ import LandingView from "./views/LandingView";
 import DetailView from "./views/DetailView";
 import Rooms from "./views/RoomsView";
 import Restaurant from "./views/Restaurant";
+import LoginView from "./views/LoginView";
+import TermsAndConditionsView from "./views/TermsAndConditions";
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/detail/:id" element={<DetailView />} />
           <Route path="/rooms" element={<Rooms/>}/>
           <Route path="/restaurant" element={<Restaurant/>}/>
+          <Route path="/login" element={<LoginView/>}/>
+          <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
         </Routes> 
       </Router>   
    );
