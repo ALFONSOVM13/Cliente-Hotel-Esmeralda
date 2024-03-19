@@ -11,7 +11,8 @@ function LandingPages({ showModal, setShowModal }) {
   };
 
   const handleClickDetails = () => {
-    navigate("/termsAndCondicitions");
+    navigate("/termsAndConditions");
+    handleClose()
   };
   const handleClose = () => {
     setShowModal(false);
@@ -46,7 +47,7 @@ function LandingPages({ showModal, setShowModal }) {
               <div className="shrink-0 mt-3.5 h-px bg-white border border-white border-solid max-md:max-w-full" />
             </div>
             <button
-              className="shrink-0 self-start mt-2 aspect-[0.83] fill-white w-[15px] "
+              className="bg-transparent hover:bg-transparent hover:backdrop-blur-md  hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-transparent dark:hover:backdrop-blur-md dark:hover:text-white"
               onClick={handleClose}
             >
               <img

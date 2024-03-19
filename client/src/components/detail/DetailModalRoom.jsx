@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const DetailModalRoom = ({ room }) => {
- const [currentImageIndex, setCurrentImageIndex] = useState(1); // Comienza en 1 para excluir la primera imagen
+ const [currentImageIndex, setCurrentImageIndex] = useState(1); 
 
  const handleNext = () => {
     setCurrentImageIndex((prevIndex) =>
