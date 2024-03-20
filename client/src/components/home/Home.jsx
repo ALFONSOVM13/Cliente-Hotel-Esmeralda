@@ -13,13 +13,7 @@ function Home() {
   return (
     <>
       <LandingPages showModal={showModal} setShowModal={setShowModal} />
-
-        <SearchBar />
-
-
-
-
-      
+        <SearchBar />      
     </>
   );
 }
