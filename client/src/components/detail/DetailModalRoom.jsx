@@ -23,8 +23,8 @@ const DetailModalRoom = ({ room }) => {
         <div id="slide1" className=" carousel-item relative w-full h-full"> 
           <img src={room.images[currentImageIndex]} className=" w-full h-full object-cover" />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-          <button onClick={handlePrevious} className="btn btn-circle text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-6 h-6 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">❮</button>
-<button onClick={handleNext} className="btn btn-circle text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-6 h-6 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">❯</button>
+          <button onClick={handlePrevious} className="btn btn-circle text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-6 h-6 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">❮</button>
+<button onClick={handleNext} className="btn btn-circle text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-6 h-6 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">❯</button>
           </div>
         </div>
       </div>
