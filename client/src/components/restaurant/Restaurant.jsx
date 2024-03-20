@@ -8,7 +8,7 @@ const MenuPage = ({ setCurrentPage }) => {
  const allFoodsData = useSelector((state) => state.foods.foodsAll);
  const filteredFoods = useSelector((state) => state.foods.filteredFoods);
 
- const [activeItem, setActiveItem] = useState("Italian");
+ const [activeItem, setActiveItem] = useState("All Dishes");
 
 
  const handleCategoryClick = (category) => {
