@@ -1,13 +1,13 @@
 import axios from "axios";
 import { FOODS, FILTER_FOODS, ORDER_FOODS } from "./types";
-
+   
 export const allFoods = () => async (dispatch) => {
  try {
     const response = await axios.get('https://backend-hotelesmeralda.onrender.com/api/dishes');
-    console.log('Alimentos obtenidos:', response.data)/
+    console.log('Alimentos obtenidos:', response.data.dishes) 
     dispatch({
       type: FOODS,
-      payload: response.data
+      payload: response.data.dishes,
     });
  } catch (error) {
     console.error('Error al obtener los alimentos:', error);
