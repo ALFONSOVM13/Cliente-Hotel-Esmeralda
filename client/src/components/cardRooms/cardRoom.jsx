@@ -17,8 +17,8 @@ function CardRoom({ room }) {
 
  return (
 <div className="flex items-center  rounded-lg shadow   bg-v ">
- <img className="object-cover w-full rounded-t-lg h-128 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={room.images[0]} alt={room.name} />
- <img className="object-cover w-full rounded-t-lg h-128 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={room.images[1]} alt={room.name} />
+ <img className="object-cover w-full rounded-t-lg h-128 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={room.photo_url} alt={room.name} />
+ {/* <img className="object-cover w-full rounded-t-lg h-128 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={room.images[1]} alt={room.name} /> */}
  <div className="flex flex-col justify-between p-4 leading-normal">
      <h5 className="mb-2 text-2xl font-bold tracking-tight text-b dark:text-white">{room.name}</h5>
      <p className="mb-3 font-normal text-b dark:text-b ">{room.description}</p>
@@ -34,6 +34,7 @@ function CardRoom({ room }) {
  <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
      <DetailModalRoom room={room} />
  </Modal>
+
 </div>
 
 

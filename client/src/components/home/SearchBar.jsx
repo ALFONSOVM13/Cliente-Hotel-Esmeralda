@@ -57,7 +57,7 @@ const SearchBar = () => {
       });
       setAvailableRooms(response.data.rooms);
     } catch (error) {
-      console.error('Error al enviar la solicitud de disponibilidad:', error);
+      console.error("Error al enviar la solicitud de disponibilidad:", error);
     }
   };
 
@@ -69,10 +69,11 @@ const SearchBar = () => {
         checkOutDate,
         numberOfPeople: numberOfAdults + numberOfChildren
       };
-      const response = await axios.post('/ruta-reserva', reservationData);
+      const response = await axios.post("/ruta-reserva", reservationData);
       setReservationStatus(response.data.message);
-      // Actualización de la lista de habitaciones disponibles después de la reserva exitosa
-      setAvailableRooms(prevRooms => prevRooms.filter(room => room.id !== roomId));
+      setAvailableRooms((prevRooms) =>
+        prevRooms.filter((room) => room.id !== roomId)
+      );
     } catch (error) {
       console.error('Error al enviar la solicitud de reserva:', error);
     }
@@ -133,10 +134,10 @@ const SearchBar = () => {
         <Select
           className="w-full px-3 py-2 border rounded-lg bg-v text-black"
           options={[
-            { value: '1', label: '1' },
-            { value: '2', label: '2' },
-            { value: '3', label: '3' },
-            { value: '4', label: '4' },            
+            { value: "1", label: "1" },
+            { value: "2", label: "2" },
+            { value: "3", label: "3" },
+            { value: "4", label: "4" },
           ]}
           value={{ value: numberOfAdults.toString(), label: numberOfAdults.toString() }}
           onChange={option => handleAdultsChange(option.value)}
