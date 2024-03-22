@@ -1,4 +1,5 @@
 import * as React from "react";
+import BackToHomeButton from "./BackToHomeButton";
 
 const SocialLoginButton = ({ src, alt, platform }) => (
   <div className="flex gap-2 px-5 py-3 mt-4 rounded-2xl border border-violet-100 border-solid text-stone-400">
@@ -25,7 +26,9 @@ function LoginPage() {
   ];
 
   return (
-    <div className="pl-20 rounded-3xl bg-v max-md:pl-5">
+    <div className="">
+
+    <div className="pl-20  bg-v max-md:pl-5">
       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
         <div className="flex flex-col w-[30%] max-md:ml-0 max-md:w-full">
           <section className="flex flex-col self-stretch my-auto text-base text-white max-md:mt-10">
@@ -59,10 +62,10 @@ function LoginPage() {
                   <input type="checkbox" id="rememberMe" className="shrink-0 bg-white border border-white border-solid h-[15px] w-[15px]" />
                   <label htmlFor="rememberMe" className="flex-auto my-auto">Remember me</label>
                 </div>
-                <button type="submit" className="justify-center px-6 py-5 mt-6 font-bold bg-amber-300 rounded-2xl shadow-lg max-md:px-5">
+              </div>
+                <button type="submit" className="justify-center px-6 py-5 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5">
                   Login Now
                 </button>
-              </div>
             </form>
             <p className="mt-8">
               <span className="font-bold text-stone-400">Login</span>{" "}
@@ -77,12 +80,18 @@ function LoginPage() {
             <p className="self-center mt-8 text-2xl font-extrabold tracking-tight">
               Create Account
             </p>
+            <div className="mt-24">
+
+            <BackToHomeButton/>
+            </div>
           </section>
         </div>
-        <div className="flex flex-col ml-5 w-[70%] max-md:ml-0 max-md:w-full">
-          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fa8f08c581a5a38d8116e6387c776ccefd9769d799cc74f3c96f1a5f826826c1?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&" alt="Decorative image" className="grow w-full aspect-[1.11] max-md:mt-10 max-md:max-w-full" />
+        <div className=" flex flex-col ml-5 w-[70%]   max-md:ml-0 max-md:w-full">
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fa8f08c581a5a38d8116e6387c776ccefd9769d799cc74f3c96f1a5f826826c1?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&" alt="Decorative image" 
+          className=" grow w-full aspect-[1.11] max-md:mt-10 max-md:max-w-full" />
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export const allFoods = () => async (dispatch) => {
     console.log('Alimentos obtenidos:', response.data); // Agregar este console.log
     dispatch({
       type: FOODS,
-      payload: response.data // Cambiar de response.data.menu a response.data
+      payload: response.data.dishes // Cambiar de response.data.menu a response.data
     });
  } catch (error) {
     console.error('Error al obtener los alimentos:', error);
