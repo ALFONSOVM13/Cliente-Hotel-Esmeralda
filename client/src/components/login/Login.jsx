@@ -42,7 +42,7 @@ function LoginPage() {
                   <label htmlFor="rememberMe" className="flex-auto my-auto">Remember me</label>
                 </div>
               </div>
-                <button type="submit" className="ml-52 justify-center px-6 py-3 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5 ">
+                <button type="submit" className="ml-52 justify-center px-6 py-3 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5 transition-colors">
                   Login Now
                 </button>
             </form>
