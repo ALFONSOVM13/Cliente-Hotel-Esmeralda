@@ -1,9 +1,15 @@
 import BackToHomeButton from "./BackToHomeButton";
+import { useNavigate } from 'react-router-dom';
 import { SignIn, SignInButton, SignUp } from "@clerk/clerk-react";
 
 
 function LoginPage() {
- 
+  const navigate = useNavigate();
+
+  const handleCreateAccountClick = () => {
+    navigate('/register'); // Navega a la página de registro cuando se hace clic en "Create Account"
+  };
+
   return (
     <div >
 
@@ -42,7 +48,7 @@ function LoginPage() {
                   <label htmlFor="rememberMe" className="flex-auto my-auto">Remember me</label>
                 </div>
               </div>
-                <button type="submit" className="ml-52 justify-center px-6 py-3 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5 ">
+                <button type="submit" className="ml-52 justify-center px-6 py-3 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5 transition-colors">
                   Login Now
                 </button>
             </form>
@@ -62,11 +68,13 @@ function LoginPage() {
             <p className="self-center mt-7 text-xl font-medium tracking-normal leading-7">
               have you forgotten your password?
             </p>
-            <button>
-            <p className="self-center mt-8 text-2xl font-extrabold tracking-tight">
-              Create Account
-            </p>
+            <button onClick={handleCreateAccountClick} className="cursor-pointer focus:outline-none bg-transparent border-none w-40 ml-48">
+                 <p className="self-center mt-8 text-2xl font-extrabold tracking-tight text-stone-400 hover:text-amber-400 transition-colors">
+               Create Account
+                   </p>
             </button>
+
+
             <div className="mt-5">
 
             <BackToHomeButton/>

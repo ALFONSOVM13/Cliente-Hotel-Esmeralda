@@ -8,11 +8,12 @@ import Rooms from "./views/RoomsView";
 import Restaurant from "./views/Restaurant";
 import LoginView from "./views/LoginView";
 import TermsAndConditionsView from "./views/TermsAndConditions";
+import RegisterView from './views/RegisterView';
 
 // Componente MainLayout
 function MainLayout() {
  const location = useLocation();
- const showNavbar = location.pathname !== '/login';
+ const showNavbar = location.pathname !== '/login' && location.pathname !== '/register';
 
  return (
     <>
@@ -25,6 +26,7 @@ function MainLayout() {
         <Route path="/restaurant" element={<Restaurant/>}/>
         <Route path="/login" element={<LoginView/>}/>
         <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
+        <Route path="/register" element={<RegisterView/>}/>
       </Routes>
     </>
  );
