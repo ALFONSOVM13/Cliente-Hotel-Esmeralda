@@ -7,7 +7,7 @@ const CardsRooms = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/rooms')
+    fetch('https://backend-hotelesmeralda.onrender.com/api/rooms')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

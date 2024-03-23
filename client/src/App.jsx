@@ -6,12 +6,12 @@ import HomeView from './views/HomeView';
 import Navbar from './components/navbar/Navbar';
 
 import LandingView from "./views/LandingView";
-
 import DetailView from "./views/DetailView";
 import Rooms from "./views/RoomsView";
 import Restaurant from "./views/Restaurant";
 import LoginView from "./views/LoginView";
 import TermsAndConditionsView from "./views/TermsAndConditions";
+import ResultsView from "./views/ResultView";
 
 function App() {
 
@@ -27,8 +27,10 @@ function App() {
           <Route path="/rooms" element={<Rooms/>}/>
           <Route path="/restaurant" element={<Restaurant/>}/>
           <Route path="/login" element={<LoginView/>}/>
+          <Route path="/register" element={<LoginView/>}/>  
+          <Route path="/results" element={<ResultsView />} />
           <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
-        </Routes> 
+        </Routes>   
       </Router>   
    );
 }

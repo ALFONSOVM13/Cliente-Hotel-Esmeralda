@@ -4,7 +4,6 @@ import LogoImage from "../../assets/logo.svg";
 import lobby from "../../assets/lobby.svg";
 import lobby1 from "../../assets/rooms.svg";
 
-
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -24,10 +23,12 @@ function Navbar() {
   const getLobbyImage = () => {
     if (location.pathname === "/") {
       return lobby;
-    } else {
+    } else if (location.pathname === "/rooms") {
       return lobby1;
+    } else {
+      return null;
     }
-  }
+  };
 
   return (
     <div className="nav-container">
@@ -39,38 +40,47 @@ function Navbar() {
             className="h-40 cursor-pointer"
             onClick={reloadPage}
           />
-          <NavLink exact to="/" className="text-white hover:text-d">
+          <NavLink
+            to="/"
+            className={`text-white hover:text-d ${
+              location.pathname === "/" ? "active text-d" : ""
+            }`}
+          >
             HOME
           </NavLink>
 
           <NavLink
             to="/rooms"
-            activeClassName="text-gray-300"
-            className="text-white hover:text-d"
+            className={`text-white hover:text-d ${
+              location.pathname === "/rooms" ? "active text-d" : ""
+            }`}
           >
             ROOMS
           </NavLink>
 
           <NavLink
             to="/services"
-            activeClassName="text-gray-300"
-            className="text-white hover:text-d"
+            className={`text-white hover:text-d ${
+              location.pathname === "/services" ? "active text-d" : ""
+            }`}
           >
             SERVICES
           </NavLink>
 
           <NavLink
             to="/restaurant"
-            activeClassName="text-gray-300"
-            className="text-white hover:text-d"
+            className={`text-white hover:text-d ${
+              location.pathname === "/restaurant" ? "active text-d" : ""
+            }`}
           >
             RESTAURANT
           </NavLink>
 
           <NavLink
             to="/offers"
-            activeClassName="text-gray-300"
-            className="text-white hover:text-d"
+            className={`text-white hover:text-d ${
+              location.pathname === "/offers" ? "active text-d" : ""
+            }`}
           >
             SPECIAL OFFERS
           </NavLink>
@@ -78,32 +88,34 @@ function Navbar() {
           <div className="relative inline-block" onMouseLeave={closeMenu}>
             <NavLink
               onMouseEnter={openMenu}
-              className="text-white bg-transparent focus:outline-none hover:text-d"
+              className="text-white bg-transparent  hover:text-d"
             >
               SEE MORE
             </NavLink>
             {isOpen && (
               <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-48 rounded-lg ">
-                {" "}
                 <div className="py-1">
                   <NavLink
                     to="/gallery"
-                    activeClassName="text-gray-800 bg-gray-200"
-                    className="block px-4 py-2 text-b hover:text-d "
+                    className={`block px-4 py-2 text-b hover:text-d ${
+                      location.pathname === "/gallery" ? "active" : ""
+                    }`}
                   >
                     GALLERY
                   </NavLink>
                   <NavLink
                     to="/option2"
-                    activeClassName="text-gray-800 bg-gray-200"
-                    className="block px-4 py-2 text-b hover:text-d"
+                    className={`block px-4 py-2 text-b hover:text-d ${
+                      location.pathname === "/option2" ? "active" : ""
+                    }`}
                   >
                     CONTACT
                   </NavLink>
                   <NavLink
                     to="/option3"
-                    activeClassName="text-gray-800 bg-gray-200"
-                    className="block px-4 py-2 text-b hover:text-d"
+                    className={`block px-4 py-2 text-b hover:text-d ${
+                      location.pathname === "/option3" ? "active" : ""
+                    }`}
                   >
                     FAQs
                   </NavLink>
@@ -115,17 +127,17 @@ function Navbar() {
           <div className="flex space-x-16">
             <NavLink
               to="/register"
-              activeClassName="text-gray-300"
-              className="text-white border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn"
-              style={{ width: "160px" }}
+              className={`text-white w-full sm:w-40 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn ${
+                location.pathname === "/register" ? "active" : ""
+              }`}
             >
               REGISTER
             </NavLink>
             <NavLink
               to="/login"
-              activeClassName="text-accent-700"
-              className="text-white bg-d -300 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn"
-              style={{ width: "160px" }}
+              className={`text-white w-full sm:w-40 bg-d -300 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn ${
+                location.pathname === "/login" ? "active" : ""
+              }`}
             >
               LOGIN
             </NavLink>
@@ -133,7 +145,7 @@ function Navbar() {
         </div>
       </nav>
       <header className="flex justify-center items-center">
-        <img src={getLobbyImage()} alt="Lobby" className="w-full" />
+        <img src={getLobbyImage()} className="w-full" />
       </header>
     </div>
   );
