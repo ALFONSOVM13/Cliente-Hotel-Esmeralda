@@ -5,22 +5,22 @@ import lobby from "../../assets/lobby.svg";
 import lobby1 from "../../assets/rooms.svg";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+ const [isOpen, setIsOpen] = useState(false);
+ const location = useLocation();
 
-  const reloadPage = () => {
+ const reloadPage = () => {
     window.location.reload();
-  };
+ };
 
-  const openMenu = () => {
+ const openMenu = () => {
     setIsOpen(true);
-  };
+ };
 
-  const closeMenu = () => {
+ const closeMenu = () => {
     setIsOpen(false);
-  };
+ };
 
-  const getLobbyImage = () => {
+ const getLobbyImage = () => {
     if (location.pathname === "/") {
       return lobby;
     } else if (location.pathname === "/rooms") {
@@ -30,7 +30,10 @@ function Navbar() {
     }
   };
 
-  return (
+ const { user } = useClerk();
+ console.log(user);
+
+ return (
     <div className="nav-container">
       <nav className="bg-v p-2">
         <div className="max-w-full px-6 mx-auto flex flex-wrap justify-around items-center lg:max-w-8xl">
@@ -95,43 +98,46 @@ function Navbar() {
             {isOpen && (
               <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-48 rounded-lg ">
                 <div className="py-1">
-                  <NavLink
+                 <NavLink
                     to="/gallery"
                     className={`block px-4 py-2 text-b hover:text-d ${
                       location.pathname === "/gallery" ? "active" : ""
                     }`}
                   >
                     GALLERY
-                  </NavLink>
-                  <NavLink
+                 </NavLink>
+                 <NavLink
                     to="/option2"
                     className={`block px-4 py-2 text-b hover:text-d ${
                       location.pathname === "/option2" ? "active" : ""
                     }`}
                   >
                     CONTACT
-                  </NavLink>
-                  <NavLink
+                 </NavLink>
+                 <NavLink
                     to="/option3"
                     className={`block px-4 py-2 text-b hover:text-d ${
                       location.pathname === "/option3" ? "active" : ""
                     }`}
                   >
                     FAQs
-                  </NavLink>
+                 </NavLink>
                 </div>
               </div>
             )}
           </div>
 
-          <div className="flex space-x-16">
+          <div className="flex space-x-16 ">
             <NavLink
               to="/register"
               className={`text-white w-full sm:w-40 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn ${
                 location.pathname === "/register" ? "active" : ""
               }`}
             >
+              <div className="ml-5">
+
               REGISTER
+              </div>
             </NavLink>
             <NavLink
               to="/login"
@@ -139,8 +145,24 @@ function Navbar() {
                 location.pathname === "/login" ? "active" : ""
               }`}
             >
+              <div className=" ml-10 ">
+
               LOGIN
+              </div>
             </NavLink>
+            {user && (
+              <NavLink>
+                <div className="font-bold text-white flex items-center justify-center">
+                 <UserButton/>
+                 <h1 className="ml-2">Hi, {user.firstName}</h1>
+                </div>
+                
+                <SignOutButton>
+                  <button className="text-white ">
+                  Sign out</button>
+                </SignOutButton>
+              </NavLink>
+            )}
           </div>
         </div>
       </nav>
@@ -148,7 +170,7 @@ function Navbar() {
         <img src={getLobbyImage()} className="w-full" />
       </header>
     </div>
-  );
+ );
 }
 
 export default Navbar;
