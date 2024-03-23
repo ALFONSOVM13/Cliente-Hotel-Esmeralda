@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { SignOutButton, UserButton, useClerk } from '@clerk/clerk-react'; // Añade esta línea
 import LogoImage from "../../assets/logo.svg";
 import lobby from "../../assets/lobby.svg";
 import lobby1 from "../../assets/rooms.svg";

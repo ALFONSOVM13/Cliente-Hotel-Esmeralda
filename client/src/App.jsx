@@ -16,24 +16,6 @@ function MainLayout() {
  const location = useLocation();
  const showNavbar = location.pathname !== '/login' && location.pathname !== '/register';
 
-
-
-  return (
-       <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<HomeView />} />
-          <Route path='/landing' element={<LandingView />} />
-          <Route path="/detail/:id" element={<DetailView />} />
-          <Route path="/rooms" element={<Rooms/>}/>
-          <Route path="/restaurant" element={<Restaurant/>}/>
-          <Route path="/login" element={<LoginView/>}/>
-          <Route path="/register" element={<LoginView/>}/>  
-          <Route path="/results" element={<ResultsView />} />
-          <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
-        </Routes>     
-      </Router>   
-   );
  return (
     <>
       {showNavbar && <Navbar />}
@@ -44,6 +26,7 @@ function MainLayout() {
         <Route path="/rooms" element={<Rooms/>}/>
         <Route path="/restaurant" element={<Restaurant/>}/>
         <Route path="/login" element={<LoginView/>}/>
+        <Route path="/results" element={<ResultsView/>}/>
         <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
         <Route path="/register" element={<RegisterView/>}/>
       </Routes>
