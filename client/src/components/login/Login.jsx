@@ -1,29 +1,10 @@
 import * as React from "react";
 import BackToHomeButton from "./BackToHomeButton";
+import { SignIn, SignInButton, SignUp } from "@clerk/clerk-react";
 
-const SocialLoginButton = ({ src, alt, platform }) => (
-  <div className="flex gap-2 px-5 py-3 mt-4 rounded-2xl border border-violet-100 border-solid text-stone-400">
-    <img loading="lazy" src={src} alt={alt} className="shrink-0 aspect-square w-[30px]" />
-    <div className="my-auto">
-      <span className="font-extrabold">Login with </span>
-      <span className="font-extrabold text-stone-400">{platform}</span>
-    </div>
-  </div>
-);
 
 function LoginPage() {
-  const socialLogins = [
-    {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/f6d3d808ab4073688c4ad1c7066eb7286e3889dc42405f8a6653ac235230880a?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&",
-      alt: "Google logo",
-      platform: "Google",
-    },
-    {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/9fa1d3850e3eeda2cd776a21e765a8e4ba0878db7438b78d1f53599c2a7d0366?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&",
-      alt: "Facebook logo", 
-      platform: "Facebook",
-    },
-  ];
+ 
 
   return (
     <div className="">
@@ -32,7 +13,7 @@ function LoginPage() {
       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
         <div className="flex flex-col w-[30%] max-md:ml-0 max-md:w-full">
           <section className="flex flex-col self-stretch my-auto text-base text-white max-md:mt-10">
-            <h1 className="self-center text-5xl font-extrabold tracking-tight leading-[52.8px] max-md:text-4xl">
+            <h1 className="self-center text-5xl font-extrabold tracking-tight leading-[52.8px] max-md:text-4xl mt-28">
               Login
             </h1>
             <p className="self-center mt-7 text-xl">Your paradise escape starts here!</p>
@@ -63,24 +44,32 @@ function LoginPage() {
                   <label htmlFor="rememberMe" className="flex-auto my-auto">Remember me</label>
                 </div>
               </div>
-                <button type="submit" className="justify-center px-6 py-5 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5">
+                <button type="submit" className="ml-52 justify-center px-6 py-3 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5">
                   Login Now
                 </button>
             </form>
-            <p className="mt-8">
+            <p className="mt-8 ml-52">
               <span className="font-bold text-stone-400">Login</span>{" "}
               <span className="font-bold">with Others</span>
             </p>
-            {socialLogins.map((login, index) => (
+            <div className="ml-11">
+            <SignIn afterSignInUrl="/home"/>
+
+            </div>
+            {/* <SignInButton mode="modal" redirectUrl="/home"/> */}
+            {/* <SignUp/> */}
+            {/* {socialLogins.map((login, index) => (
               <SocialLoginButton key={index} {...login} />
-            ))}
+            ))} */}
             <p className="self-center mt-7 text-xl font-medium tracking-normal leading-7">
               have you forgotten your password?
             </p>
+            <button>
             <p className="self-center mt-8 text-2xl font-extrabold tracking-tight">
               Create Account
             </p>
-            <div className="mt-24">
+            </button>
+            <div className="mt-5">
 
             <BackToHomeButton/>
             </div>
