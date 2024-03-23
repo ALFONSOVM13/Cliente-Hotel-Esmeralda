@@ -11,65 +11,48 @@ const SearchBar = () => {
   const [numberOfChildren, setNumberOfChildren] = useState(0); 
   const [availableRooms, setAvailableRooms] = useState([]);
   const [reservationStatus, setReservationStatus] = useState('');
-  const [categoryOptions, setCategoryOptions] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null); 
 
-  useEffect(() => {
-    let updatedCategoryOptions = [];
-  
-    if (numberOfAdults <= 2 && numberOfChildren === 0) {
-      updatedCategoryOptions = [
-        { value: 'standartking', label: 'Standart King' },
-        { value: 'superiorking', label: 'Superior King' },
-        { value: 'juniorking', label: 'Junior King' },
-        { value: 'presidentialsuite', label: 'Presidential Suite' },
-        { value: 'all', label: 'All Categories' }
-      ];
-    } else if (numberOfAdults <= 2 && numberOfChildren > 0) {
-      updatedCategoryOptions = [
-        { value: 'superiorking', label: 'Superior King' },
-        { value: 'presidentialsuite', label: 'Presidential Suite' },
-        { value: 'all', label: 'All Categories' }
-      ];
-    }
-
-    setCategoryOptions(updatedCategoryOptions);
-  }, [numberOfAdults, numberOfChildren]);
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    const day = String(date.getDate()).padStart(2, '0'); 
+    return `${year}-${month}-${day}`;
+  };
   
   const handleSearch = async () => {
     try {
-      let categoryValue = null;
-      if (selectedCategory && selectedCategory.value !== 'all') {
-        categoryValue = selectedCategory.value;
-      }
-
-      const numberOfPeople = numberOfAdults + numberOfChildren;
-
-      const searchData = {
-        checkInDate,
-        checkOutDate,
-        numberOfPeople,
-        category: categoryValue
-      };
+      const capacity = numberOfAdults + numberOfChildren; 
+      const formattedCheckInDate = checkInDate ? formatDate(checkInDate) : null;
+      const formattedCheckOutDate = checkOutDate ? formatDate(checkOutDate) : null;
       
-      const response = await axios.get('/ruta-disponibilidad', {
-        params: searchData
+      const searchData = {
+        from: formattedCheckInDate, 
+        to: formattedCheckOutDate, 
+        capacity 
+      };
+  
+      console.log('searchData:', searchData); 
+      
+      const response = await axios.post('http://localhost:4000/api/rooms/available', searchData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
       setAvailableRooms(response.data.rooms);
     } catch (error) {
       console.error("Error al enviar la solicitud de disponibilidad:", error);
     }
   };
-
-  const handleReservation = async (roomId) => {
+  
+  const handleReservation = async (room_id) => {
     try {
       const reservationData = {
-        roomId,
-        checkInDate,
-        checkOutDate,
-        numberOfPeople: numberOfAdults + numberOfChildren
+        user_id ,
+        formattedCheckInDate,
+        formattedCheckOutDate,
+        room_id
       };
-      const response = await axios.post("/ruta-reserva", reservationData);
+      const response = await axios.post("http://localhost:4000/api/reservations", reservationData);
       setReservationStatus(response.data.message);
       setAvailableRooms((prevRooms) =>
         prevRooms.filter((room) => room.id !== roomId)
@@ -108,8 +91,8 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="mt-8 w-4/6 md:w-2/3 lg:w-1/2 mx-auto p-4 bg-v rounded-lg shadow-md flex flex-wrap">
-      <div className="w-full md:w-auto md:flex-1 md:mr-2 mb-4 md:mb-0 mr-1 ml-2">
+    <div className="mt-8 w-2/3 md:w-2/3 lg:w-1/2 mx-auto p-4 bg-v rounded-lg shadow-md flex flex-wrap">
+      <div className="w-full md:w-1/4 md:flex-1 md:mr-2 mb-4 md:mb-0 mr-1 ml-2">
         <label className="block mb-1 text-white ">CHECK-IN</label>
         <DatePicker
           className="w-full px-3 py-2 border rounded-lg bg-v text-white text-center"
@@ -129,7 +112,7 @@ const SearchBar = () => {
           dateFormat="dd/MM/yyyy" 
         />
       </div>
-      <div className="w-full md:w-auto md:flex-1 md:mr-2 mb-4 md:mb-0 mr-1 ml-1" >
+      <div className="w-full md:w-1/4 md:flex-1 md:mr-2 mb-4 md:mb-0 mr-1 ml-1" >
         <label className="block mb-1 text-white text-center">ADULTS</label>
         <Select
           className="w-full px-3 py-2 border rounded-lg bg-v text-black"
@@ -143,7 +126,7 @@ const SearchBar = () => {
           onChange={option => handleAdultsChange(option.value)}
         />
       </div>
-      <div className="w-full md:w-auto md:flex-1 md:mr-2 mb-4 md:mb-0 mr-1 ml-1" >
+      <div className="w-full md:w-1/4 md:flex-1 md:mr-2 mb-4 md:mb-0 mr-1 ml-1" >
         <label className="block mb-1 text-white text-center">CHILDREN</label>
         <Select
           className="w-full px-3 py-2 border rounded-lg bg-v text-black"
@@ -157,16 +140,6 @@ const SearchBar = () => {
           onChange={option => handleChildrenChange(option.value)}
         />
       </div>
-      <div className="w-full md:w-auto md:mr-2 mb-4 md:mb-0 ml-1 mr-1">
-        <label className="block mb-1 text-white text-center">CATEGORY</label>
-        <Select
-          className="w-full px-3 py-2 border rounded-lg bg-v text-black" 
-          options={categoryOptions}
-          value={selectedCategory}
-          onChange={option => setSelectedCategory(option)}
-          placeholder="Select Category" 
-        />
-      </div>
       <div className="w-full md:w-auto mt-4 md:mt-0">
         <button
           className="w-full px-4 py-2 mt-9 text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 ml-1 mr-5"
@@ -177,32 +150,30 @@ const SearchBar = () => {
       </div>
 
       {availableRooms.length > 0 && (
-  <div className="w-full mt-4">
-    <h3 className="text-lg font-semibold mb-2 text-white">AVAILABLE ROOMS</h3>
-    <ul>
-      {availableRooms.map(room => (
-        <li key={room.id} className="mb-4">
-          <div className="flex items-center">
-            <img src={room.imageUrl} alt={room.name} className="mr-4 w-24 h-auto" />
-            <div>
-              <p className="text-white font-semibold mb-1">{room.name}</p>
-              {/* En lo que sigue mostramos el precio calculado por el back que al precio base lo reduce dependiendo 
-              de la relación numero de personas-categoría */}
-              <p className="text-white">{room.calculatedPrice}</p> {/* Mostrar el precio recalculado */}
-            </div>
-          </div>
-          <button
-            className="px-3 py-1 mt-2 text-sm text-white bg-yellow-500 rounded-lg hover:bg-yellow-600"
-            onClick={() => handleReservation(room.id)}
-          >
-            BOOK
-          </button>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
-      {reservationStatus && <p className="mt-4 text-black 0">{reservationStatus}</p>}
+        <div className="w-full mt-4">
+          <h3 className="text-lg font-semibold mb-2 text-white">AVAILABLE ROOMS</h3>
+          <ul>
+            {availableRooms.map(room => (
+              <li key={room.id} className="mb-4">
+                <div className="flex items-center">
+                  <img src={room.photo_url} alt={room.photo} className="mr-4 w-24 h-auto" />
+                  <div>
+                    <p className="text-white font-semibold mb-1">max: {room.max_capacity} p</p>
+                    <p className="text-white">U$ {room.price_per_night}</p> 
+                  </div>
+                </div>
+                <button
+                  className="px-3 py-1 mt-2 text-sm text-white bg-yellow- 500 rounded-lg hover:bg-yellow-600"
+                  onClick={() => handleReservation(room.id)}
+                >
+                  BOOK
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {reservationStatus && <p className="mt-4 text-black">{reservationStatus}</p>}
     </div>
   );
 };
