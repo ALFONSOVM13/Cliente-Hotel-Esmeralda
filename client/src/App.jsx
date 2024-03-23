@@ -30,7 +30,7 @@ function App() {
           <Route path="/register" element={<LoginView/>}/>  
           <Route path="/results" element={<ResultsView />} />
           <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
-        </Routes>   
+        </Routes>     
       </Router>   
    );
 }

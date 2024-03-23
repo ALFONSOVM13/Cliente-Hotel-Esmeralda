@@ -53,7 +53,7 @@ const SearchBar = () => {
       console.log("availableRooms after API call:", response.data.rooms); 
 
       navigate('/results', { state: { availableRooms: response.data.rooms } });
-    } catch (error) {
+        } catch (error) {
       console.error("Error al enviar la solicitud de disponibilidad:", error);
     }
   };
