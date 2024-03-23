@@ -47,7 +47,7 @@ function LandingPages({ showModal, setShowModal }) {
               <div className="shrink-0 mt-3.5 h-px bg-white border border-white border-solid max-md:max-w-full" />
             </div>
             <button
-              className="bg-transparent hover:bg-transparent hover:backdrop-blur-md  hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-transparent dark:hover:backdrop-blur-md dark:hover:text-white"
+              className="bg-transparent hover:bg-transparent hover:backdrop-blur-md  hover:text-gray-900 transition-colors rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-transparent dark:hover:backdrop-blur-md dark:hover:text-white"
               onClick={handleClose}
             >
               <img

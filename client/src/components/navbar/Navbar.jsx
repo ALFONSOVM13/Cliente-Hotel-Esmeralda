@@ -42,14 +42,14 @@ function Navbar() {
             className="h-40 cursor-pointer"
             onClick={reloadPage}
           />
-          <NavLink exact to="/" className="text-white hover:text-d">
+          <NavLink exact to="/" className="text-white hover:text-d transition-colors">
             HOME
           </NavLink>
 
           <NavLink
             to="/rooms"
             activeClassName="text-gray-300"
-            className="text-white hover:text-d"
+            className="text-white hover:text-d transition-colors"
           >
             ROOMS
           </NavLink>
@@ -57,7 +57,7 @@ function Navbar() {
           <NavLink
             to="/services"
             activeClassName="text-gray-300"
-            className="text-white hover:text-d"
+            className="text-white hover:text-d transition-colors"
           >
             SERVICES
           </NavLink>
@@ -65,7 +65,7 @@ function Navbar() {
           <NavLink
             to="/restaurant"
             activeClassName="text-gray-300"
-            className="text-white hover:text-d"
+            className="text-white hover:text-d transition-colors"
           >
             RESTAURANT
           </NavLink>
@@ -81,7 +81,7 @@ function Navbar() {
           <div className="relative inline-block" onMouseLeave={closeMenu}>
             <NavLink
               onMouseEnter={openMenu}
-              className="text-white bg-transparent focus:outline-none hover:text-d"
+              className="text-white bg-transparent focus:outline-none hover:text-d transition-colors"
             >
               SEE MORE
             </NavLink>
@@ -91,21 +91,21 @@ function Navbar() {
                  <NavLink
                     to="/gallery"
                     activeClassName="text-gray-800 bg-gray-200"
-                    className="block px-4 py-2 text-b hover:text-d "
+                    className="block px-4 py-2 text-b hover:text-d transition-colors"
                  >
                     GALLERY
                  </NavLink>
                  <NavLink
                     to="/option2"
                     activeClassName="text-gray-800 bg-gray-200"
-                    className="block px-4 py-2 text-b hover:text-d"
+                    className="block px-4 py-2 text-b hover:text-d transition-colors"
                  >
                     CONTACT
                  </NavLink>
                  <NavLink
                     to="/option3"
                     activeClassName="text-gray-800 bg-gray-200"
-                    className="block px-4 py-2 text-b hover:text-d"
+                    className="block px-4 py-2 text-b hover:text-d transition-colors"
                  >
                     FAQs
                  </NavLink>
@@ -118,7 +118,7 @@ function Navbar() {
             <NavLink
               to="/register"
               activeClassName="text-gray-300"
-              className=" text-white border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn"
+              className=" text-white border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn hover:bg-slate-900 transition-colors"
               style={{ width: "160px" }}
             >
               <div className="ml-5">
@@ -129,7 +129,7 @@ function Navbar() {
             <NavLink
               to="/login"
               activeClassName="text-accent-700"
-              className="text-white bg-d -300 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn"
+              className="text-white bg-d -300 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn hover:bg-amber-400 transition-colors"
               style={{ width: "160px" }}
             >
               <div className=" ml-10 ">

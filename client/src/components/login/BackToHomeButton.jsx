@@ -13,7 +13,7 @@ const BackToHomeButton = () => {
  return (
     <button
       onClick={goToHome}
-      className="flex items-center gap-2 px-4 py-2 text-v font-bold bg-d rounded-2xl hover:bg-amber-400"
+      className="flex items-center gap-2 px-4 py-2 text-v font-bold bg-d rounded-2xl hover:bg-amber-400 transition-colors"
     >
       <FiArrowLeft size={20} /> Volver al Home
     </button>

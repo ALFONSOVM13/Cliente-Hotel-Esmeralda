@@ -1,13 +1,11 @@
-import * as React from "react";
 import BackToHomeButton from "./BackToHomeButton";
 import { SignIn, SignInButton, SignUp } from "@clerk/clerk-react";
 
 
 function LoginPage() {
  
-
   return (
-    <div className="">
+    <div >
 
     <div className="pl-20  bg-v max-md:pl-5">
       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -19,7 +17,7 @@ function LoginPage() {
             <p className="self-center mt-7 text-xl">Your paradise escape starts here!</p>
             <form>
               <label htmlFor="username" className="sr-only">Username</label>
-              <div className="flex gap-1.5 px-5 py-3.5 mt-5 font-bold whitespace-nowrap rounded-2xl bg-orange-100 bg-opacity-80 text-zinc-900">
+              <div className="flex gap-1.5 px-5 py-3.5 mt-5 font-bold whitespace-nowrap rounded-2xl bg-white bg-opacity-80 text-zinc-900">
                 <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0a592f3e6a871ed42db10bc4b9f20d0695722c54d3a3fcd5c1e267f84847048a?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&" alt="" className="shrink-0 w-6 aspect-square" />
                 <input
                   type="text"
@@ -29,7 +27,7 @@ function LoginPage() {
                 />
               </div>
               <label htmlFor="password" className="sr-only">Password</label>
-              <div className="flex gap-1.5 px-5 py-3.5 mt-5 font-bold whitespace-nowrap rounded-2xl bg-orange-100 bg-opacity-80 text-zinc-900">
+              <div className="flex gap-1.5 px-5 py-3.5 mt-5 font-bold whitespace-nowrap rounded-2xl bg-white bg-opacity-80 text-zinc-900">
                 <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/cf7ac098f5db87311adb5bb39ad666714d75de6cb890f8468d9b4fea61602d32?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&" alt="" className="shrink-0 w-6 aspect-square" />
                 <input
                   type="password"
@@ -44,7 +42,7 @@ function LoginPage() {
                   <label htmlFor="rememberMe" className="flex-auto my-auto">Remember me</label>
                 </div>
               </div>
-                <button type="submit" className="ml-52 justify-center px-6 py-3 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5">
+                <button type="submit" className="ml-52 justify-center px-6 py-3 mt-6 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5 ">
                   Login Now
                 </button>
             </form>
