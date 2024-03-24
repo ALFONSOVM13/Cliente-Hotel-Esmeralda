@@ -41,7 +41,7 @@ const SearchBar = () => {
       console.log("searchData:", searchData);
 
       const response = await axios.post(
-        "http://localhost:4000/api/rooms/available",
+        "https://backend-hotelesmeralda.onrender.com/api/rooms/available",
         searchData,
         {
           headers: {

@@ -5,45 +5,79 @@ import DetailModalRoom from '../detail/DetailModalRoom';
 import Modal from '../modal/modal';
 
 
-
 function CardRoom({ room }) {
     const navigate = useNavigate()
-   
- const [isModalOpen, setIsModalOpen] = useState(false); 
 
- const handleClick = () => {
+   const [isModalOpen, setIsModalOpen] = useState(false); 
+
+   const handleClick = () => {
     navigate('/formulario');
   };
 
- return (
-<div className="flex items-center  rounded-lg shadow   bg-v ">
- <img className="object-cover w-full rounded-t-lg h-128 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={room.photo_url} alt={room.name} />
- {/* <img className="object-cover w-full rounded-t-lg h-128 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={room.images[1]} alt={room.name} /> */}
- <div className="flex flex-col justify-between p-4 leading-normal">
-     <h5 className="mb-2 text-2xl font-bold tracking-tight text-b dark:text-white">{room.name}</h5>
-     <p className="mb-3 font-normal text-b dark:text-b ">{room.description}</p>
-     <div className="flex justify-between"> 
-       <button onClick={() => setIsModalOpen(true)} className="flex justify-center items-center px-4 py-2 text-base tracking-normal leading-6 text-white hover:bg-slate-950 transition-colors rounded-2xl border border-violet-100 border-solid max-w-[364px]">
-          See More        
-       </button>
-       <button onClick={handleClick} className="flex justify-center items-center px-4 py-2 text-base font-bold text-white bg-amber-300 hover:bg-amber-400 transition-colors rounded-2xl shadow-lg max-w-[364px]">
-         Book Now
-       </button>
-     </div>
- </div>
- <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-     <DetailModalRoom room={room} />
- </Modal>
-
+  return (
+    <div className="pl-16 rounded-3xl shadow-sm bg-v max-md:pl-5 w-full  lg:w-8/12 ">
+      <div className="flex gap-5 max-md:flex-col max-md:gap-0 ">
+        <div className="flex flex-col w-[39%] max-md:ml-0 max-md:w-full">
+          <div className="flex z-10 flex-col mt-7 max-md:max-w-full">
+            <div className="flex flex-col items-start pl-20 max-md:pl-5 max-md:max-w-full">
+              <div className="max-md:max-w-full">
+                <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                  <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                    <div className="mt-28 ml-24 text-4xl font-extrabold tracking-tight text-center text-white leading-[50.4px] max-md:mt-10 " >
+                    {room.room_type.name}
+                    </div>
+                  </div>
+                  <div className="ml-34 flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/663eae8fd7be6df68f6e25af7f35976248e4a857012e381fb6faa82ea9ca17d3?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&"
+                      className="ml-32 shrink-0 max-w-full aspect-square w-[198px] max-md:mt-5"
+                      alt="Superior King"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-16 ml-24 text-base font-semibold text-white max-md:mt-10 max-md:ml-2.5">
+                Sleeps {room.max_capacity} | 2 King 
+              </div>
+            </div>
+            <div className="mt-11 text-2xl font-medium text-white max-md:mt-10 max-md:max-w-full">
+            {room.description}
+            </div>
+            <button
+              className=" justify-center items-center px-16 py-5 mt-9 text-base font-extrabold tracking-normal leading-6 text-white rounded-2xl border border-violet-100 border-solid hover:bg-slate-950 transition-colors max-md:px-5 max-md:max-w-full"
+              onClick={() => setIsModalOpen(true)}
+            >
+              SEE MORE
+            </button>
+            <button
+              className="justify-center items-center px-16 py-5 mt-6 text-base font-bold text-white bg-amber-300 hover:bg-amber-400 transition-colors rounded-2xl shadow-lg max-md:px-5 max-md:max-w-full"
+              onClick={handleClick}
+            >
+              BOOK NOW
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col ml-5 w-[58%] max-md:ml-0 max-md:w-full">
+ <img
+    loading="lazy"
+    src={room.photo_url}
+    className="grow w-full shadow-sm aspect-[0.91] max-md:max-w-full rounded-r-3xl"
+    alt="Room"
+ />
 </div>
 
+      </div>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+           <DetailModalRoom room={room} />
+        </Modal>
 
- 
- );
+    </div>
+  );
 }
 
-export default CardRoom;
 
+export default CardRoom;
 
 
 {/* <article className="flex flex-col justify-center items-start px-16 text-white rounded-3xl shadow-sm bg-green-950 max-md:pl-5">
