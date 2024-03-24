@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import axios from 'axios'; 
+import { useNavigate } from 'react-router-dom'; 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
+import FormBook from '../forms/FormBook';
+import { RoomContext } from '../../../context/RoomContext'; 
 
 const SearchBar = () => {
+
+  const { availableRooms, setAvailableRooms } = useContext(RoomContext); 
+
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [numberOfAdults, setNumberOfAdults] = useState(1); 
   const [numberOfChildren, setNumberOfChildren] = useState(0); 
-  const [availableRooms, setAvailableRooms] = useState([]);
-  const [reservationStatus, setReservationStatus] = useState('');
+  const [searchCompleted, setSearchCompleted] = useState(false);
+  const [searchData, setSearchData] = useState(null);
+
+  const navigate = useNavigate(); 
 
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -19,6 +27,10 @@ const SearchBar = () => {
     return `${year}-${month}-${day}`;
   };
   
+  useEffect(() => {
+    console.log('availableRooms actualizado:', availableRooms);
+  }, [availableRooms]);
+    
   const handleSearch = async () => {
     try {
       const capacity = numberOfAdults + numberOfChildren; 
@@ -31,37 +43,25 @@ const SearchBar = () => {
         capacity 
       };
   
-      console.log('searchData:', searchData); 
-      
       const response = await axios.post('http://localhost:4000/api/rooms/available', searchData, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
+      
       setAvailableRooms(response.data.rooms);
+     
+      console.log(response.data.rooms)
+      setSearchData({ checkInDate, checkOutDate, numberOfAdults, numberOfChildren });
+      setSearchCompleted(true);
+      
+      navigate('/formbook', {state: {availableRooms: response.data.rooms}});
     } catch (error) {
       console.error("Error al enviar la solicitud de disponibilidad:", error);
+      
+      alert("Lo sentimos, no hay habitaciones disponibles en esas fechas.");
     }
   };
-  
-  const handleReservation = async (room_id) => {
-    try {
-      const reservationData = {
-        user_id ,
-        formattedCheckInDate,
-        formattedCheckOutDate,
-        room_id
-      };
-      const response = await axios.post("http://localhost:4000/api/reservations", reservationData);
-      setReservationStatus(response.data.message);
-      setAvailableRooms((prevRooms) =>
-        prevRooms.filter((room) => room.id !== roomId)
-      );
-    } catch (error) {
-      console.error('Error al enviar la solicitud de reserva:', error);
-    }
-  };
-
   const handleAdultsChange = (value) => {
     const adults = Number(value);
     const maxAdults = 4; 
@@ -148,34 +148,11 @@ const SearchBar = () => {
           SEARCH
         </button>
       </div>
-
-      {availableRooms.length > 0 && (
-        <div className="w-full mt-4">
-          <h3 className="text-lg font-semibold mb-2 text-white">AVAILABLE ROOMS</h3>
-          <ul>
-            {availableRooms.map(room => (
-              <li key={room.id} className="mb-4">
-                <div className="flex items-center">
-                  <img src={room.photo_url} alt={room.photo} className="mr-4 w-24 h-auto" />
-                  <div>
-                    <p className="text-white font-semibold mb-1">max: {room.max_capacity} p</p>
-                    <p className="text-white">U$ {room.price_per_night}</p> 
-                  </div>
-                </div>
-                <button
-                  className="px-3 py-1 mt-2 text-sm text-white bg-yellow- 500 rounded-lg hover:bg-yellow-600"
-                  onClick={() => handleReservation(room.id)}
-                >
-                  BOOK
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {reservationStatus && <p className="mt-4 text-black">{reservationStatus}</p>}
-    </div>
-  );
+   
+  {searchCompleted && (
+    <FormBook availableRooms={availableRooms} searchData={searchData} />
+  )}
+  </div>
+);
 };
-
 export default SearchBar;
