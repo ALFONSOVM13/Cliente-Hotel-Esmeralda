@@ -14,7 +14,7 @@ function PasswordInput({ label, id, value, onChange }) {
           value={value}
           onChange={onChange}
           placeholder={`Enter your ${label}`}
-          className="flex-auto bg-transparent border-0 focus:outline-none"
+          className="flex-auto bg-transparent border-0 focus:outline-none w-[322px]"
         />
       </div>
     </div>

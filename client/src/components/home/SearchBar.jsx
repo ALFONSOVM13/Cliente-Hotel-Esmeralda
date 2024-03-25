@@ -41,7 +41,7 @@ const SearchBar = () => {
       console.log("searchData:", searchData);
 
       const response = await axios.post(
-        "http://localhost:4000/api/rooms/available",
+        "https://backend-hotelesmeralda.onrender.com/api/rooms/available",
         searchData,
         {
           headers: {
@@ -178,7 +178,7 @@ const SearchBar = () => {
         </div>
         <div className="ml-8   md:mt-7">
           <button
-            className="w-full px-8 py-3 text-white bg-yellow-500 rounded-lg hover:bg-yellow-600"
+            className="w-full px-8 py-3 text-white bg-d rounded-lg hover:bg-amber-400 color transition-colors"
             onClick={handleSearch}
           >
             SEARCH

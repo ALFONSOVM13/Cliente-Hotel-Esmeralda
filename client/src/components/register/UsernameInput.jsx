@@ -13,7 +13,8 @@ function UsernameInput({ value, onChange }) {
           value={value}
           onChange={onChange}
           placeholder="Enter your User name"
-          className="flex-auto bg-transparent border-0 focus:outline-none"
+          className="flex-auto bg-transparent border-0 focus:outline-none w-[422px]"
+          style={{ fontSize: "1.125rem" }}
         />
       </div>
       <div className="shrink-0 mt-3.5 h-0.5 bg-white max-md:max-w-full" />

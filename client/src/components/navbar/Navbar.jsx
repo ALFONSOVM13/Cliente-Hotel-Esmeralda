@@ -1,27 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { SignOutButton, UserButton, useClerk } from '@clerk/clerk-react'; // Añade esta línea
+import { SignOutButton, UserButton, useClerk } from "@clerk/clerk-react";
 import LogoImage from "../../assets/logo.svg";
 import lobby from "../../assets/lobby.svg";
 import lobby1 from "../../assets/rooms.svg";
+import Cookies from "js-cookie";
+import "./Navbar.scss";
 
 function Navbar() {
- const [isOpen, setIsOpen] = useState(false);
- const location = useLocation();
+  const [isOpenProfileMenu, setIsOpenProfileMenu] = useState(false);
+  const [isOpenSeeMoreMenu, setIsOpenSeeMoreMenu] = useState(false);
+  const location = useLocation();
+  const { signOut, user } = useClerk();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isCustomAuthenticated, setIsCustomAuthenticated] = useState(false);
 
- const reloadPage = () => {
+  useEffect(() => {
+    // Verifica la presencia del token personalizado en las cookies
+    const token = Cookies.get("token");
+    setIsCustomAuthenticated(!!token);
+  }, []);
+
+  useEffect(() => {
+    const handleTokenChange = () => {
+      const token = Cookies.get("token");
+      setIsLoggedIn(!!token);
+    };
+    window.addEventListener("storage", handleTokenChange);
+    return () => {
+      window.removeEventListener("storage", handleTokenChange);
+    };
+  }, []);
+
+  const reloadPage = () => {
     window.location.reload();
- };
+  };
 
- const openMenu = () => {
-    setIsOpen(true);
- };
+  const toggleProfileMenu = () => {
+    setIsOpenProfileMenu(!isOpenProfileMenu);
+    setIsOpenSeeMoreMenu(false);
+  };
 
- const closeMenu = () => {
+  const toggleSeeMoreMenu = () => {
+    setIsOpenSeeMoreMenu(!isOpenSeeMoreMenu);
+    setIsOpenProfileMenu(false);
+  };
+
+  const closeMenu = () => {
     setIsOpen(false);
- };
+  };
 
- const getLobbyImage = () => {
+  const getLobbyImage = () => {
     if (location.pathname === "/") {
       return lobby;
     } else if (location.pathname === "/rooms") {
@@ -31,10 +61,20 @@ function Navbar() {
     }
   };
 
- const { user } = useClerk();
- console.log(user);
+  const handleSignOut = async () => {
+    setIsLoading(true);
+    try {
+      await signOut(); // Cierra la sesión con Clerk
+      Cookies.remove("token"); // Elimina el token personalizado
+      setIsCustomAuthenticated(false); // Actualiza el estado de autenticación personalizada
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
- return (
+  return (
     <div className="nav-container">
       <nav className="bg-v p-2">
         <div className="max-w-full px-6 mx-auto flex flex-wrap justify-around items-center lg:max-w-8xl">
@@ -45,8 +85,9 @@ function Navbar() {
             onClick={reloadPage}
           />
           <NavLink
+            exact
             to="/"
-            className={`text-white hover:text-d ${
+            className={`text-white hover:text-d  transition-colors${
               location.pathname === "/" ? "active text-d" : ""
             }`}
           >
@@ -56,7 +97,9 @@ function Navbar() {
           <NavLink
             to="/rooms"
             className={`text-white hover:text-d ${
-              location.pathname === "/rooms" ? "active text-d" : ""
+              location.pathname === "/rooms"
+                ? "active text-d color transition-colors"
+                : ""
             }`}
           >
             ROOMS
@@ -82,7 +125,7 @@ function Navbar() {
 
           <NavLink
             to="/offers"
-            className={`text-white hover:text-d ${
+            className={`text-white hover:text-d transition-colors${
               location.pathname === "/offers" ? "active text-d" : ""
             }`}
           >
@@ -90,79 +133,105 @@ function Navbar() {
           </NavLink>
 
           <div className="relative inline-block" onMouseLeave={closeMenu}>
-            <NavLink
-              onMouseEnter={openMenu}
-              className="text-white bg-transparent  hover:text-d"
+            <button
+              onMouseEnter={toggleSeeMoreMenu}
+              className={`block px-4 py-2 text-b hover:text-d`}
+              style={{ fontSize: "1.25rem" }}
             >
               SEE MORE
-            </NavLink>
-            {isOpen && (
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-48 rounded-lg ">
+            </button>
+            {isOpenSeeMoreMenu && (
+              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-48 rounded-lg shadow-lg bg-v borde">
                 <div className="py-1">
-                 <NavLink
+                  <NavLink
                     to="/gallery"
-                    className={`block px-4 py-2 text-b hover:text-d ${
-                      location.pathname === "/gallery" ? "active" : ""
-                    }`}
+                    className={`block px-4 py-2 text-b hover:text-d`}
                   >
                     GALLERY
-                 </NavLink>
-                 <NavLink
+                  </NavLink>
+                  <NavLink
                     to="/option2"
-                    className={`block px-4 py-2 text-b hover:text-d ${
-                      location.pathname === "/option2" ? "active" : ""
-                    }`}
+                    className={`block px-4 py-2 text-b hover:text-d`}
                   >
                     CONTACT
-                 </NavLink>
-                 <NavLink
+                  </NavLink>
+                  <NavLink
                     to="/option3"
                     className={`block px-4 py-2 text-b hover:text-d ${
                       location.pathname === "/option3" ? "active" : ""
                     }`}
                   >
                     FAQs
-                 </NavLink>
+                  </NavLink>
                 </div>
               </div>
             )}
           </div>
 
           <div className="flex space-x-16 ">
-            <NavLink
-              to="/register"
-              className={`text-white w-full sm:w-40 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn ${
-                location.pathname === "/register" ? "active" : ""
-              }`}
-            >
-              <div className="ml-5">
-
-              REGISTER
-              </div>
-            </NavLink>
-            <NavLink
-              to="/login"
-              className={`text-white w-full sm:w-40 bg-d -300 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn ${
-                location.pathname === "/login" ? "active" : ""
-              }`}
-            >
-              <div className=" ml-10 ">
-
-              LOGIN
-              </div>
-            </NavLink>
-            {user && (
-              <NavLink>
-                <div className="font-bold text-white flex items-center justify-center">
-                 <UserButton/>
-                 <h1 className="ml-2">Hi, {user.firstName}</h1>
-                </div>
-                
-                <SignOutButton>
-                  <button className="text-white ">
-                  Sign out</button>
-                </SignOutButton>
-              </NavLink>
+            {isLoading ? (
+              <div className="custom-loader"></div>
+            ) : (
+              <>
+                {user || isCustomAuthenticated ? (
+                  <div className="font-bold text-white flex items-center justify-center">
+                    <button
+                      className="flex items-center space-x-2"
+                      onClick={toggleProfileMenu}
+                    >
+                      <img
+                        alt="Profile"
+                        className="h-8 w-8 rounded-full"
+                        src="https://www.gravatar.com/avatar/"
+                      />
+                      <h1 className="ml-2 text-lg">Hi</h1>
+                    </button>
+                    {isOpenProfileMenu && (
+                      <div className="absolute top-28 right-3 bg-white border border-gray-300 rounded shadow-md">
+                        <ul className="py-2">
+                          <li>
+                            <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
+                              Manage Account
+                            </button>
+                          </li>
+                          <li>
+                            <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
+                              Saved
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                              onClick={handleSignOut}
+                            >
+                              Sign Out
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    <NavLink
+                      to="/register"
+                      className={`text-white w-full sm:w-40 border-2 border-yellow-500 -900 px-4 py-3 rounded-lg tracking-wider btn ${
+                        location.pathname === "/register" ? "active" : ""
+                      }`}
+                    >
+                      <div className="ml-5">REGISTER</div>
+                    </NavLink>
+                    <NavLink
+                      to="/login"
+                      className={`text-white w-full sm:w-40 bg-yellow-500 -300 border-2 border-yellow-500  hover:bg-yellow-600 hover:border-yellow-600  -900 px-4 py-3 rounded-lg tracking-wider btn ${
+                        location.pathname === "/login" ? "active" : ""
+                      }`}
+                    >
+                      <div className=" ml-10 ">LOGIN</div>
+                    </NavLink>
+                  </>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -171,7 +240,7 @@ function Navbar() {
         <img src={getLobbyImage()} className="w-full" />
       </header>
     </div>
- );
+  );
 }
 
 export default Navbar;
