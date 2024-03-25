@@ -39,19 +39,17 @@ function Navbar() {
 
   const toggleProfileMenu = () => {
     setIsOpenProfileMenu(!isOpenProfileMenu);
-    setIsOpenSeeMoreMenu(false); // Close the other menu
+    setIsOpenSeeMoreMenu(false);
   };
 
   const toggleSeeMoreMenu = () => {
     setIsOpenSeeMoreMenu(!isOpenSeeMoreMenu);
-    setIsOpenProfileMenu(false); // Close the other menu
+    setIsOpenProfileMenu(false);
   };
 
   const closeMenu = () => {
     setIsOpen(false);
   };
-
-
 
   const getLobbyImage = () => {
     if (location.pathname === "/") {
@@ -99,7 +97,9 @@ function Navbar() {
           <NavLink
             to="/rooms"
             className={`text-white hover:text-d ${
-              location.pathname === "/rooms" ? "active text-d color transition-colors" : ""
+              location.pathname === "/rooms"
+                ? "active text-d color transition-colors"
+                : ""
             }`}
           >
             ROOMS
@@ -139,9 +139,9 @@ function Navbar() {
               style={{ fontSize: "1.25rem" }}
             >
               SEE MORE
-            </NavLink>
-            {isOpen && (
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-48 rounded-lg ">
+            </button>
+            {isOpenSeeMoreMenu && (
+              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-48 rounded-lg shadow-lg bg-v borde">
                 <div className="py-1">
                   <NavLink
                     to="/gallery"
@@ -189,7 +189,6 @@ function Navbar() {
                     {isOpenProfileMenu && (
                       <div className="absolute top-28 right-3 bg-white border border-gray-300 rounded shadow-md">
                         <ul className="py-2">
-
                           <li>
                             <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
                               Manage Account
