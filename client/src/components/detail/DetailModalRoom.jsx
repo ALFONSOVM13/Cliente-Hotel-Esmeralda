@@ -5,20 +5,21 @@ import { TbAirConditioningDisabled } from "react-icons/tb";
 
 const DetailModalRoom = ({ room }) => {
   const RoomDetailIcons = ({ hasFeature, icon }) => {
-    return hasFeature ? <span className="mx-2 text-white">{icon}</span> : null;
+     return hasFeature ? <span className="mx-2 text-white">{icon}</span> : null;
   };
-  const [currentImageIndex, setCurrentImageIndex] = useState(1);
-
+  // Inicializa el estado del índice de la imagen actual en 0
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+ 
   const handleNext = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex + 1 === room.images.length ? 1 : prevIndex + 1
-    );
+     setCurrentImageIndex((prevIndex) =>
+       prevIndex + 1 === room.room_detail.photos.length ? 0 : prevIndex + 1
+     );
   };
-
+ 
   const handlePrevious = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex - 1 < 1 ? room.images.length - 1 : prevIndex - 1
-    );
+     setCurrentImageIndex((prevIndex) =>
+       prevIndex - 1 < 0 ? room.room_detail.photos.length - 1 : prevIndex - 1
+     );
   };
 
   return (
@@ -26,12 +27,12 @@ const DetailModalRoom = ({ room }) => {
       <h2 className="text-white text-2xl font-bold">{room.room_type.name}</h2>
       <img
         className="object-cover w-16 h-16 rounded-t-lg md:h-auto md:w-16 md:rounded-none md:rounded-s-lg"
-        src={room.photo_url}
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/663eae8fd7be6df68f6e25af7f35976248e4a857012e381fb6faa82ea9ca17d3?apiKey=9fe8dc76776646f4a6bc648caa0a3bac&"
         alt={room.room_type.name}
       />
       <div className="carousel w-auto h-96 flex items-center justify-center">
         <div id="slide1" className="carousel-item relative w-full h-full">
-          <img src={room.photo_url} className="w-full h-full object-cover" />
+          <img src={room.room_detail.photos[currentImageIndex]} className="w-full h-full object-cover" />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <button
               onClick={handlePrevious}

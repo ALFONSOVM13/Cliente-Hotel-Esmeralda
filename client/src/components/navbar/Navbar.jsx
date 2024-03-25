@@ -89,7 +89,7 @@ function Navbar() {
           <NavLink
             exact
             to="/"
-            className={`text-white hover:text-d ${
+            className={`text-white hover:text-d  transition-colors${
               location.pathname === "/" ? "active text-d" : ""
             }`}
           >
@@ -99,7 +99,7 @@ function Navbar() {
           <NavLink
             to="/rooms"
             className={`text-white hover:text-d ${
-              location.pathname === "/rooms" ? "active text-d" : ""
+              location.pathname === "/rooms" ? "active text-d color transition-colors" : ""
             }`}
           >
             ROOMS
@@ -125,7 +125,7 @@ function Navbar() {
 
           <NavLink
             to="/offers"
-            className={`text-white hover:text-d ${
+            className={`text-white hover:text-d transition-colors${
               location.pathname === "/offers" ? "active text-d" : ""
             }`}
           >
@@ -139,9 +139,9 @@ function Navbar() {
               style={{ fontSize: "1.25rem" }}
             >
               SEE MORE
-            </button>
-            {isOpenSeeMoreMenu && (
-              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-48 rounded-3xl shadow-lg bg-v">
+            </NavLink>
+            {isOpen && (
+              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-48 rounded-lg ">
                 <div className="py-1">
                   <NavLink
                     to="/gallery"
@@ -157,7 +157,9 @@ function Navbar() {
                   </NavLink>
                   <NavLink
                     to="/option3"
-                    className={`block px-4 py-2 text-b hover:text-d`}
+                    className={`block px-4 py-2 text-b hover:text-d ${
+                      location.pathname === "/option3" ? "active" : ""
+                    }`}
                   >
                     FAQs
                   </NavLink>
