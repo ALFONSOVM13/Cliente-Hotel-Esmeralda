@@ -1,6 +1,18 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Modal = ({ isOpen, onClose, children, room }) => {
     const navigate = useNavigate()
+
+    useEffect(() => {
+    
+      if (isOpen) {
+          document.body.style.overflow = 'hidden';
+      } else {
+        
+          document.body.style.overflow = 'auto';
+      }
+  }, [isOpen]); //
+
     
  if (!isOpen) return null;
  const handleClick = () => {

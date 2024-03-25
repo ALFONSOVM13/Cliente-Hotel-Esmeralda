@@ -178,7 +178,7 @@ const SearchBar = () => {
         </div>
         <div className="ml-8   md:mt-7">
           <button
-            className="w-full px-8 py-3 text-white bg-yellow-500 rounded-lg hover:bg-yellow-600"
+            className="w-full px-8 py-3 text-white bg-d rounded-lg hover:bg-amber-400 color transition-colors"
             onClick={handleSearch}
           >
             SEARCH

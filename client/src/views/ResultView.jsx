@@ -1,18 +1,28 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Modal from "../components/modal/modal";
+import DetailModalRoom from "../components/detail/DetailModalRoom";
 
 const Results = () => {
   const location = useLocation();
   const availableRooms = location.state?.availableRooms || [];
+  const navigate = useNavigate();
 
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleRoomClick = (room) => {
     setSelectedRoom(room);
+    setIsModalOpen(true); // Open modal when room is selected
+  };
+
+  const handleClick = () => {
+    navigate("/formulario");
   };
 
   const closeModal = () => {
     setSelectedRoom(null);
+    setIsModalOpen(false); // Close modal when "Cerrar" button is clicked
   };
 
   return (
@@ -28,89 +38,64 @@ const Results = () => {
         ) : (
           availableRooms.map((room) => (
             <div
+              className="pl-16 rounded-3xl shadow-sm bg-v max-md:pl-5 w-full lg:w-12/12 m-6 lg:h-[66%]"
               key={room.id}
-              className="bg-white rounded-lg shadow-md p-6 mb-4 flex"
             >
-              <div className="w-1/2">
-                <img
-                  src={room.photo_url}
-                  alt={`Habitación ${room.room_number}`}
-                  className="w-full h-auto rounded-md mb-2"
-                />
-              </div>
-              <div className="w-1/2">
-                <h2 className="text-xl font-semibold text-gray-800 mb-2">
-                  {room.room_type.name}
-                </h2>
-                <p className="text-gray-700">
-                  {room.room_type.description}
-                </p>
-                <p className="text-gray-700">
-                  Precio por noche: ${room.price_per_night}
-                </p>
-                <div>
-                  <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                    onClick={() => handleRoomClick(room)}
-                  >
-                    Ver detalles
-                  </button>
-                  <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2 mt-4">
-                    Reservar
-                  </button>
-                  <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2 mt-4">
-                    Price per night: ${room.price_per_night}
-                  </button>
+              <div className="flex gap-5 max-md:flex-col max-md:gap-0 ">
+                <div className="flex flex-col w-[44%] max-md:ml-8 max-md:w-full lg:h-[66%]">
+                  <div className="flex flex-col mt-7 lg:h-[66%]">
+                    <div className="flex flex-col items-start  max-md:pl-5 max-md:max-w-full lg:h-[66%] ">
+                      <div className=" ">
+                        <div className="flex  max-md:flex-col max-md:gap-0 lg:h-[66%]">
+                          <div className="flex flex-col  max-md:ml-0 max-w-md ">
+                            <div className="mt-5 ml-24 text-2xl font-extrabold text-center text-white lg:h-[66%] ">
+                              {room.room_type.name}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-12 ml-24 text-base font-semibold text-white max-md:mt-10 max-md:ml-2.5 lg:h-[66%]">
+                        Sleeps {room.max_capacity} | 2 King
+                      </div>
+                    </div>
+                    <div className="mt-5 mb-8 text- font-medium text-white ">
+                      {room.description}
+                    </div>
+                    <h4 className="text-white">
+                      PRICE FOR NIGHT ${room.price_per_night}
+                    </h4>
+                    <button
+                      className="justify-center items-center px-16 py-4  text-base font-extrabold tracking-normal leading-6 text-white rounded-2xl border border-violet-100 border-solid hover:bg-slate-950 transition-colors max-md:px-5 max-md:max-w-full"
+                      onClick={() => handleRoomClick(room)} // Call handleRoomClick when "SEE MORE" is clicked
+                    >
+                      SEE MORE
+                    </button>
+                    <button
+                      className="mb-7 justify-center items-center px-16 py-4 mt-6 text-base font-bold text-white bg-amber-300 hover:bg-amber-400 transition-colors rounded-2xl shadow-lg max-md:px-5 max-md:max-w-full"
+                      onClick={handleClick}
+                    >
+                      BOOK NOW
+                    </button>
+                  </div>
+                </div>
+                <div className="flex flex-col ml-5 w-[57.5%]  max-md:w-full ">
+                  <img
+                    loading="lazy"
+                    src={room.photo_url}
+                    className="grow w-full  rounded-r-3xl "
+                    alt={`Habitación ${room.room_number}`}
+                  />
                 </div>
               </div>
             </div>
           ))
         )}
 
-        {selectedRoom && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
-            <div className="bg-white rounded-lg p-8 max-w-md z-50">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                {selectedRoom.room_type.name}
-              </h2>
-              <p className="text-gray-700">
-                {selectedRoom.room_type.description}
-              </p>
-              <ul className="list-disc list-inside text-gray-700 mt-2">
-                <li>Camas simples: {selectedRoom.room_detail.single_bed}</li>
-                <li>Camas dobles: {selectedRoom.room_detail.double_bed}</li>
-                <li>
-                  Aire acondicionado:{" "}
-                  {selectedRoom.room_detail.air_conditioning ? "Sí" : "No"}
-                </li>
-                <li>
-                  Jacuzzi: {selectedRoom.room_detail.jacuzzi ? "Sí" : "No"}
-                </li>
-                <li>
-                  Conexión a internet:{" "}
-                  {selectedRoom.room_detail.internet_connection ? "Sí" : "No"}
-                </li>
-                <li>TV: {selectedRoom.room_detail.tv ? "Sí" : "No"}</li>
-                <li>
-                  Minibar: {selectedRoom.room_detail.minibar ? "Sí" : "No"}
-                </li>
-                <li>
-                  Teléfono: {selectedRoom.room_detail.phone ? "Sí" : "No"}
-                </li>
-              </ul>
-              <p className="text-gray-700 mt-4">
-                Precio por noche: ${selectedRoom.price_per_night}
-              </p>
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                onClick={closeModal}
-              >
-                Cerrar
-              </button>
-            </div>
-          </div>
-        )}
+        {
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <DetailModalRoom room={selectedRoom} />
+          </Modal>
+        }
       </div>
     </div>
   );

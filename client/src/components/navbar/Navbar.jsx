@@ -46,7 +46,7 @@ function Navbar() {
           />
           <NavLink
             to="/"
-            className={`text-white hover:text-d ${
+            className={`text-white hover:text-d  transition-colors${
               location.pathname === "/" ? "active text-d" : ""
             }`}
           >
@@ -56,7 +56,7 @@ function Navbar() {
           <NavLink
             to="/rooms"
             className={`text-white hover:text-d ${
-              location.pathname === "/rooms" ? "active text-d" : ""
+              location.pathname === "/rooms" ? "active text-d color transition-colors" : ""
             }`}
           >
             ROOMS
@@ -82,7 +82,7 @@ function Navbar() {
 
           <NavLink
             to="/offers"
-            className={`text-white hover:text-d ${
+            className={`text-white hover:text-d transition-colors${
               location.pathname === "/offers" ? "active text-d" : ""
             }`}
           >
@@ -97,7 +97,7 @@ function Navbar() {
               SEE MORE
             </NavLink>
             {isOpen && (
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-48 rounded-lg ">
+              <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-48 rounded-lg transition-colors">
                 <div className="py-1">
                  <NavLink
                     to="/gallery"
@@ -117,7 +117,7 @@ function Navbar() {
                  </NavLink>
                  <NavLink
                     to="/option3"
-                    className={`block px-4 py-2 text-b hover:text-d ${
+                    className={`block px-4 py-2 text-b hover:text-d  transition-colors${
                       location.pathname === "/option3" ? "active" : ""
                     }`}
                   >
@@ -131,7 +131,7 @@ function Navbar() {
           <div className="flex space-x-16 ">
             <NavLink
               to="/register"
-              className={`text-white w-full sm:w-40 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn ${
+              className={`text-white w-full sm:w-40 border-2 border-d -900 hover:bg-slate-900 transition-colors  px-4 py-3 rounded-lg tracking-wider btn ${
                 location.pathname === "/register" ? "active" : ""
               }`}
             >
@@ -142,7 +142,7 @@ function Navbar() {
             </NavLink>
             <NavLink
               to="/login"
-              className={`text-white w-full sm:w-40 bg-d -300 border-2 border-d -900 px-4 py-3 rounded-lg tracking-wider btn ${
+              className={`text-white w-full sm:w-40 bg-d -300 border-2 hover:bg-amber-400 transition-colors border-d -900 px-4 py-3 rounded-lg tracking-wider btn ${
                 location.pathname === "/login" ? "active" : ""
               }`}
             >
