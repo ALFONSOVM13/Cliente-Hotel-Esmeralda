@@ -10,15 +10,14 @@ import LoginView from "./views/LoginView";
 import TermsAndConditionsView from "./views/TermsAndConditions";
 import ResultsView from "./views/ResultView";
 import RegisterView from './views/RegisterView';
+import Footer from './components/footer/Footer';
 
-// Componente MainLayout
 function MainLayout() {
  const location = useLocation();
- const showNavbar = location.pathname !== '/login' && location.pathname !== '/register';
 
  return (
     <>
-      {showNavbar && <Navbar />}
+      {location.pathname !== '/login' && location.pathname !== '/register' && <Navbar />}
       <Routes>
         <Route path='/' element={<HomeView />} />
         <Route path='/landing' element={<LandingView />} />
@@ -30,6 +29,7 @@ function MainLayout() {
         <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
         <Route path="/register" element={<RegisterView/>}/>
       </Routes>
+      <Footer />
     </>
  );
 }

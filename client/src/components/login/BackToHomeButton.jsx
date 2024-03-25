@@ -13,9 +13,9 @@ const BackToHomeButton = () => {
  return (
     <button
       onClick={goToHome}
-      className="flex items-center gap-2 px-4 py-2 text-v font-bold bg-d rounded-2xl hover:bg-amber-400 mt-5 transition-colors"
+      className="flex items-center gap-2 px-4 py-2 text-v font-bold bg-d rounded-2xl hover:bg-amber-400 mt-3 transition-colors"
     >
-      <FiArrowLeft size={20} /> Volver al Home
+      <FiArrowLeft size={20} /> Back to home
     </button>
  );
 };

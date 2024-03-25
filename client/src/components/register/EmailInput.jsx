@@ -2,7 +2,7 @@
 
 function EmailInput({ value, onChange }) {
   return (
-    <div className="flex flex-col px-5 mt-14 text-base text-white max-md:mt-10 max-md:max-w-full">
+    <div className="flex flex-col px-6 mt-14 text-base text-white max-md:mt-10 max-md:max-w-full">
       <label htmlFor="email" className="font-extrabold max-md:max-w-full">
         Email
       </label>
@@ -14,7 +14,8 @@ function EmailInput({ value, onChange }) {
           value={value}
           onChange={onChange}
           placeholder="Enter your email address"
-          className="flex-auto bg-transparent border-0 focus:outline-none"
+          className="flex-auto bg-transparent border-0 focus:outline-none w-[422px]"
+          style={{ fontSize: "1.125rem" }}
         />
       </div>
       <div className="shrink-0 mt-2.5 h-0.5 bg-white max-md:max-w-full" />
