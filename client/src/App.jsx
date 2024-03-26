@@ -29,7 +29,7 @@ function MainLayout() {
         <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
         <Route path="/register" element={<RegisterView/>}/>
       </Routes>
-      <Footer />
+      {location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
     </>
  );
 }

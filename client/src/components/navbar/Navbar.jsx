@@ -6,6 +6,7 @@ import lobby from "../../assets/lobby.svg";
 import lobby1 from "../../assets/rooms.svg";
 import Cookies from "js-cookie";
 import "./Navbar.scss";
+import { useUser } from "@clerk/clerk-react";
 
 function Navbar() {
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState(false);
@@ -182,9 +183,9 @@ function Navbar() {
                       <img
                         alt="Profile"
                         className="h-8 w-8 rounded-full"
-                        src="https://www.gravatar.com/avatar/"
+                        src={user.imageUrl}
                       />
-                      <h1 className="ml-2 text-lg">Hi</h1>
+                      <h1 className="ml-2 text-lg">Hi, {user.firstName}</h1>
                     </button>
                     {isOpenProfileMenu && (
                       <div className="absolute top-28 right-3 bg-white border border-gray-300 rounded shadow-md">
