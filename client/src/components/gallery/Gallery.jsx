@@ -40,6 +40,7 @@ const Gallery = ({ filter }) => {
 
   return (
     <div>
+      <div className="min-h-[500px]">
       <div className="grid grid-cols-2 gap-4 mt-5">
         {currentPageData.map((item, index) => (
           <div key={index} className="flex flex-col items-center">
@@ -50,16 +51,18 @@ const Gallery = ({ filter }) => {
           </div>
         ))}
       </div>
-      
+      </div>
       <div className="flex justify-end items-center mt-4">
-        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-          <FontAwesomeIcon icon={faChevronLeft} className="text-2xl mr-4" />
+        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className="bg-v hover:text-yellow-500 text-white font-bold py-2 px-4 rounded-l">
+          <FontAwesomeIcon icon={faChevronLeft} className="text-2xl mr-2" />
+          Prev
         </button>
-        <div className="text-xl mr-4">
+        <div className="text-xl mx-4">
           Page {currentPage}
         </div>
-        <button onClick={() => handlePageChange(currentPage + 1)} disabled={endIndex >= allData.length}>
-          <FontAwesomeIcon icon={faChevronRight} className="text-2xl" />
+        <button onClick={() => handlePageChange(currentPage + 1)} disabled={endIndex >= allData.length} className="bg-v hover:text-yellow-500 text-white font-bold py-2 px-4 rounded-r">
+          Next
+          <FontAwesomeIcon icon={faChevronRight} className="text-2xl ml-2" />
         </button>
       </div>
     </div>
