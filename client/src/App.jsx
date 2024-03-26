@@ -11,6 +11,7 @@ import TermsAndConditionsView from "./views/TermsAndConditions";
 import ResultsView from "./views/ResultView";
 import RegisterView from './views/RegisterView';
 import Footer from './components/footer/Footer';
+import GalleryView from './views/GalleryView';
 import ProfileView from './views/ProfileView';
 
 function MainLayout() {
@@ -29,7 +30,6 @@ function MainLayout() {
         <Route path="/results" element={<ResultsView/>}/>
         <Route path="/termsAndConditions" element={<TermsAndConditionsView/>}/>
         <Route path="/register" element={<RegisterView/>}/>
-        <Route path="/profile" element={<ProfileView/>}/>
       </Routes>
       {location.pathname !== '/login' && location.pathname !== '/register' && <Footer />}
     </>
