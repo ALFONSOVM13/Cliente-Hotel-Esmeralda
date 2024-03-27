@@ -7,6 +7,7 @@ import {
   faWifi,
 } from "@fortawesome/free-solid-svg-icons";
 import Collage from "../../assets/collage.png";
+//home
 
 const IconRow = () => {
   return (
