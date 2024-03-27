@@ -15,12 +15,17 @@ function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isCustomAuthenticated, setIsCustomAuthenticated] = useState(false);
+  const [showGalleryDescription, setShowGalleryDescription] = useState(false);
 
   useEffect(() => {
     // Verifica la presencia del token personalizado en las cookies
     const token = Cookies.get("token");
     setIsCustomAuthenticated(!!token);
   }, []);
+
+  useEffect(() => {
+    setShowGalleryDescription(location.pathname === "/gallery");
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleTokenChange = () => {
@@ -56,6 +61,8 @@ function Navbar() {
       return lobby;
     } else if (location.pathname === "/rooms") {
       return lobby1;
+    } else if (location.pathname === "/gallery") {
+      return 'https://lanzarote-resorts.com/images/hotel_rubicon_palace.jpg';
     } else {
       return null;
     }
@@ -93,6 +100,15 @@ function Navbar() {
           >
             HOME
           </NavLink>
+          {showGalleryDescription && (
+  <div className="header-description absolute left-20 text-white text-left z-10" style={{ top: "calc(10% + 100px)" }}>
+    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Gallery</h1>
+    <p className="text-sm md:text-base lg:text-lg xl:text-xl leading-normal md:leading-relaxed lg:leading-normal xl:leading-relaxed">
+      See the image gallery of the Hotel <br/> Esmeralda Resort & Spa and <br/> discover why we are 
+      one of the <br/> best hotels in Buenos Aires for <br/> business and leisure stays
+    </p>
+  </div>
+)}
 
           <NavLink
             to="/rooms"

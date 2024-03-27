@@ -53,6 +53,24 @@ const dataEvents =
         speakers: ["Entrepreneurs", "Agricultural Experts", "Investors"],
         attendees: 400,
         Url: "https://static.wixstatic.com/media/d1bce9_ca0cd57f8a0e4ad7a0aab374f4e15f17~mv2.jpg/v1/fill/w_2000,h_1125,al_c/d1bce9_ca0cd57f8a0e4ad7a0aab374f4e15f17~mv2.jpg"
+      },
+      {
+        id: 7,
+        name: "Rembrandt: Master of Light and Shadow",
+        description: "Exhibition showcasing the life and works of Rembrandt, highlighting his mastery of light and shadow.",
+        date: "10-11-2024",
+        speakers: ["Art Historians", "Curators"],
+        attendees: 800,
+        Url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsyD9dhERpa6s_0OkbELfvl0S04-admaom4YrBN_-W65cqs1-5tfwQB8IwLOWI1_Qpw4c&usqp=CAU"
+      },
+      {
+        id: 8,
+        name: "Exploring Modern Art Movements",
+        description: "Interactive session exploring various modern art movements and their impact on contemporary society.",
+        date: "25-9-2024",
+        speakers: ["Art Critics", "Contemporary Artists"],
+        attendees: 500,
+        Url: "https://www.shutterstock.com/image-vector/art-exhibition-banner-invitation-modern-260nw-2137491123.jpg"
       }
   ];
 
