@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-
-
 import SearchBar from "./SearchBar";
 import LandingPages from "../landing/LandingPage";
+import IconRow from "./Icons.jsx";
 
 function Home() {
 
@@ -13,7 +12,8 @@ function Home() {
   return (
     <>
       <LandingPages showModal={showModal} setShowModal={setShowModal} />
-        <SearchBar />      
+        <SearchBar />
+        <IconRow />    
     </>
   );
 }

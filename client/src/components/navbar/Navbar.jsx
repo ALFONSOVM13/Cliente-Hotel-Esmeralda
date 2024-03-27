@@ -4,6 +4,7 @@ import { SignOutButton, UserButton, useClerk } from "@clerk/clerk-react";
 import LogoImage from "../../assets/logo.svg";
 import lobby from "../../assets/lobby.svg";
 import lobby1 from "../../assets/rooms.svg";
+import Gallery from "../../assets/gallery.svg"
 import Cookies from "js-cookie";
 import "./Navbar.scss";
 
@@ -56,7 +57,11 @@ function Navbar() {
       return lobby;
     } else if (location.pathname === "/rooms") {
       return lobby1;
-    } else {
+      
+    } else if (location.pathname === "/restaurant") {
+      return Gallery  ;
+    }
+    else {
       return null;
     }
   };
