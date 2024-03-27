@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { SignOutButton, UserButton, useClerk } from "@clerk/clerk-react";
+import { useSelector } from "react-redux";
+import {  useClerk } from "@clerk/clerk-react";
 import LogoImage from "../../assets/logo.svg";
 import lobby from "../../assets/lobby.svg";
 import lobby1 from "../../assets/rooms.svg";
-import Gallery from "../../assets/gallery.svg"
+import Gallery from "../../assets/gallery.svg";
 import Cookies from "js-cookie";
 import "./Navbar.scss";
-import { useUser } from "@clerk/clerk-react";
 
 function Navbar() {
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState(false);
@@ -17,12 +17,18 @@ function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isCustomAuthenticated, setIsCustomAuthenticated] = useState(false);
+  const [showGalleryDescription, setShowGalleryDescription] = useState(false);
 
+  const userInfo = useSelector(state => state.users.userInfo);
+  
   useEffect(() => {
-    // Verifica la presencia del token personalizado en las cookies
     const token = Cookies.get("token");
     setIsCustomAuthenticated(!!token);
   }, []);
+
+  useEffect(() => {
+    setShowGalleryDescription(location.pathname === "/gallery");
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleTokenChange = () => {
@@ -50,7 +56,8 @@ function Navbar() {
   };
 
   const closeMenu = () => {
-    setIsOpen(false);
+    setIsOpenSeeMoreMenu(false);
+    setIsOpenProfileMenu(false);
   };
 
   const getLobbyImage = () => {
@@ -58,11 +65,11 @@ function Navbar() {
       return lobby;
     } else if (location.pathname === "/rooms") {
       return lobby1;
-      
+    } else if (location.pathname === "/gallery") {
+      return "https://lanzarote-resorts.com/images/hotel_rubicon_palace.jpg";
     } else if (location.pathname === "/restaurant") {
-      return Gallery  ;
-    }
-    else {
+      return Gallery;
+    } else {
       return null;
     }
   };
@@ -99,6 +106,21 @@ function Navbar() {
           >
             HOME
           </NavLink>
+          {showGalleryDescription && (
+            <div
+              className="header-description absolute left-20 text-white text-left z-10"
+              style={{ top: "calc(10% + 100px)" }}
+            >
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                Gallery
+              </h1>
+              <p className="text-sm md:text-base lg:text-lg xl:text-xl leading-normal md:leading-relaxed lg:leading-normal xl:leading-relaxed">
+                See the image gallery of the Hotel <br /> Esmeralda Resort & Spa
+                and <br /> discover why we are one of the <br /> best hotels in
+                Buenos Aires for <br /> business and leisure stays
+              </p>
+            </div>
+          )}
 
           <NavLink
             to="/rooms"
@@ -185,26 +207,27 @@ function Navbar() {
                       className="flex items-center space-x-2"
                       onClick={toggleProfileMenu}
                     >
-                    {user?.imageUrl ? (
-  <img
-    alt="Profile"
-    className="h-8 w-8 rounded-full"
-    src={user.imageUrl}
-  />
-) : (
-  <img
-    alt="Profile"
-    className="h-8 w-8 rounded-full"
-    src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Cambia esto por la URL de la imagen por defecto
-  />
-)}
+                      {user?.imageUrl ? (
+                        <img
+                          alt="Profile"
+                          className="h-8 w-8 rounded-full"
+                          src={user.imageUrl}
+                        />
+                      ) : (
+                        <img
+                          alt="Profile"
+                          className="h-8 w-8 rounded-full"
+                          src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Cambia esto por la URL de la imagen por defecto
+                        />
+                      )}
 
-{user?.firstName ? (
-  <h1 className="ml-2 text-lg">{`Hi, ${user.firstName}`}</h1>
-) : (
-  <h1 className="ml-2 text-lg">Hi</h1>
-)}
-                     
+                      {user?.firstName ? (
+                        <h1 className="ml-2 text-lg">{`Hi, ${user.firstName}`}</h1>
+                      ) : (
+                        <h1 className="ml-2 text-lg">Hi, 
+                        {/* {userInfo.userInfo.username || null} */}
+                        </h1>
+                      )}
                     </button>
                     {isOpenProfileMenu && (
                       <div className="absolute top-28 right-3 bg-white border border-gray-300 rounded shadow-md">
