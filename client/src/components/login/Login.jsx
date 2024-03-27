@@ -52,7 +52,7 @@ function LoginPage() {
               <h1 className="self-center text-4xl font-extrabold tracking-tight leading-[52.8px] max-md:text-4xl">
                 Login
               </h1>
-              <p className="self-center mt-2 text-xl">
+              <p className="self-center mt-2 text-xl mb-5">
                 Your paradise escape starts here!
               </p>
 
@@ -111,24 +111,24 @@ function LoginPage() {
                 <div className="flex flex-col items-center ">
                   <button
                     type="submit"
-                    className="justify-center m-4 px-6 py-3 mt-4 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5 transition-colors"
+                    className="justify-center m-4 px-6 py-3 mt-8 font-bold text-v bg-amber-300  hover:bg-amber-400 rounded-2xl shadow-lg max-md:px-5 transition-colors"
                   >
                     Login Now
                   </button>
 
                   <p
                     onClick={handleCreateAccountClick}
-                    className="cursor-pointer self-center m-0 mt-4 text-2xl font-extrabold tracking-tight text-stone-400 hover:text-amber-400 transition-colors"
+                    className="cursor-pointer self-center m-0 mt-7 text-2xl font-extrabold tracking-tight text-stone-400 hover:text-amber-400 transition-colors"
                   >
                     Create Account
                   </p>
                 </div>
               </form>
-              <p className="mt-8 ml-0">
-                <span className="font-bold text-stone-400">Login</span>{" "}
-                <span className="font-bold">with Others</span>
-              </p>
             </section>
+              <p className="items-center justify-center ml-60 mt-8 mb-8 ">
+                <span className="font-bold text-stone-400">Login</span>{" "}
+                <span className="font-bold text-white ">with Others</span>
+              </p>
             <div className="flex justify-center mb-6">
               <SignIn afterSignInUrl="/" />
             </div>

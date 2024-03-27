@@ -66,10 +66,10 @@ function SignUpForm({ onSubmit }) {
         <div className="flex gap-5 max-md:flex-col max-md:gap-0 ">
           <div className="flex flex-col w-[81%] max-md:ml-0 max-md:w-full ">
             <header className="flex flex-col grow px-5 mt-0 text-xl text-white max-md:mt-8 ">
-              <h1 className="self-center text-5xl font-extrabold tracking-tight leading-[52.8px] max-md:text-4xl">
+              <h1 className="self-center text-5xl font-extrabold tracking-tight leading-[52.8px] max-md:text-4xl ml-20">
                 Sign up
               </h1>
-              <p className="mt-2 font-medium">
+              <p className="mt-4 font-medium">
                 If you already have an account register
               </p>
               <p className="mt-3.5 text-white">
@@ -116,7 +116,7 @@ function SignUpForm({ onSubmit }) {
         </div>
         <button
           type="submit"
-          className="justify-center items-center px-24   py-4 mt-5   text-2xl font-extrabold text-white whitespace-nowrap bg-amber-300  hover:bg-amber-400 transition-colors rounded-2xl shadow-lg max-md:px-5 max-md:max-w-full ml-48"
+          className="justify-center items-center px-24   py-4 mt-10 ml  text-2xl font-extrabold text-white whitespace-nowrap bg-amber-300  hover:bg-amber-400 transition-colors rounded-2xl shadow-lg max-md:px-5 max-md:max-w-full ml-52"
         >
           Register
         </button>

@@ -7,6 +7,7 @@ import lobby1 from "../../assets/rooms.svg";
 import Gallery from "../../assets/gallery.svg"
 import Cookies from "js-cookie";
 import "./Navbar.scss";
+import { useUser } from "@clerk/clerk-react";
 
 function Navbar() {
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState(false);
@@ -184,12 +185,26 @@ function Navbar() {
                       className="flex items-center space-x-2"
                       onClick={toggleProfileMenu}
                     >
-                      <img
-                        alt="Profile"
-                        className="h-8 w-8 rounded-full"
-                        src="https://www.gravatar.com/avatar/"
-                      />
-                      <h1 className="ml-2 text-lg">Hi</h1>
+                    {user?.imageUrl ? (
+  <img
+    alt="Profile"
+    className="h-8 w-8 rounded-full"
+    src={user.imageUrl}
+  />
+) : (
+  <img
+    alt="Profile"
+    className="h-8 w-8 rounded-full"
+    src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Cambia esto por la URL de la imagen por defecto
+  />
+)}
+
+{user?.firstName ? (
+  <h1 className="ml-2 text-lg">{`Hi, ${user.firstName}`}</h1>
+) : (
+  <h1 className="ml-2 text-lg">Hi</h1>
+)}
+                     
                     </button>
                     {isOpenProfileMenu && (
                       <div className="absolute top-28 right-3 bg-white border border-gray-300 rounded shadow-md">
